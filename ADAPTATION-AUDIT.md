@@ -19,3 +19,7 @@
 - 验证 data metadata encryption/FBE、fastbootd、亮度、电池、触摸、震动、MTP 与重启路径。
 
 上述不是完成项。编译产物只能标记为待真机验证候选。
+
+## QSEE 动态加载库修正
+
+原厂 qseecomd 的字符串表与参考服务依赖表明，它运行时加载 libgpt/librpmb/libssd/libops/libGPreqcancel/libqisl/libdrmtime/libspl。已从本地原厂提取目录补齐这些库及其厂商依赖，记录于 evidence/qsee-runtime-dependencies.json；镜像检查现在强制检查这八个入口库。仍需真机验证监听器注册和符号解析成功。

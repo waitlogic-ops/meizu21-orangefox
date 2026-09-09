@@ -1,0 +1,220 @@
+{
+  "libraries": {
+    "libspl.so": {
+      "sha256": "929b1c1c4c2e0914c479e1a901299e5f73fda62f483ad529c1849074f4ec4875",
+      "needed": [
+        "libcutils.so",
+        "liblog.so",
+        "libQSEEComAPI.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ]
+    },
+    "libQSEEComAPI.so": {
+      "sha256": "76deb0c8e8ae672dcd1a15fe87103c44231bcf347f67b71a6e63653f9de51e77",
+      "needed": [
+        "libdmabufheap.so",
+        "liblog.so",
+        "libutils.so",
+        "libqcbor.so",
+        "libminkdescriptor.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ]
+    },
+    "libminkdescriptor.so": {
+      "sha256": "10ea80d7928476e76a8a94c0facf45ecac71d551d33ded23f25ee33ae8f5c808",
+      "needed": [
+        "liblog.so",
+        "libutils.so",
+        "libqcbor.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ]
+    },
+    "libqcbor.so": {
+      "sha256": "7973f24411c2eb510b64004a0a4e5b930efb446f9743ab82def830d6bdba3418",
+      "needed": [
+        "liblog.so",
+        "libutils.so",
+        "libcutils.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ]
+    },
+    "libdrmtime.so": {
+      "sha256": "f5f8903fe0f0bfdb943ecccd65c1a299a60fa7b607bffe581299b5adebf43e3e",
+      "needed": [
+        "libutils.so",
+        "libcutils.so",
+        "libdiag.so",
+        "liblog.so",
+        "libQSEEComAPI.so",
+        "libtime_genoff.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ]
+    },
+    "libtime_genoff.so": {
+      "sha256": "93a863da3ed2cbb99028f22d75cba5eba4f840ce8832e4c764219cf418a48654",
+      "needed": [
+        "libc.so",
+        "libcutils.so",
+        "liblog.so",
+        "libc++.so",
+        "libm.so",
+        "libdl.so"
+      ]
+    },
+    "libdiag.so": {
+      "sha256": "e17110db77010046631e65b3a6f2d4296af0286df17b721498f0da70ff594f6e",
+      "needed": [
+        "liblog.so",
+        "libc.so",
+        "libcutils.so",
+        "libc++.so",
+        "libm.so",
+        "libdl.so"
+      ]
+    },
+    "libqisl.so": {
+      "sha256": "52eed4da8f8b5c47f23b42d49b6d031d084dec22dc1858762bbe7a22f66f1122",
+      "needed": [
+        "libcutils.so",
+        "liblog.so",
+        "libQSEEComAPI.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ]
+    },
+    "libGPreqcancel.so": {
+      "sha256": "e1a9674282200276cfaaee0e7654b24816b7ff2de4fa3d3f6022052ae01d53bb",
+      "needed": [
+        "libutils.so",
+        "libcutils.so",
+        "libdiag.so",
+        "liblog.so",
+        "libQSEEComAPI.so",
+        "libGPreqcancel_svc.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ]
+    },
+    "libGPreqcancel_svc.so": {
+      "sha256": "df120975d6b04c5e7062421e2689c9030c7ee6cf759ca83a4762014377eef787",
+      "needed": [
+        "libutils.so",
+        "libcutils.so",
+        "liblog.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ]
+    },
+    "libops.so": {
+      "sha256": "8047a50de8b138bd6b95c11efd9e9044d0a8e87f4eb71587764cf739bcecf034",
+      "needed": [
+        "libutils.so",
+        "libcutils.so",
+        "libQSEEComAPI.so",
+        "liblog.so",
+        "libdrm.so",
+        "libhidlbase.so",
+        "libdisplayconfig.qti.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ]
+    },
+    "libdisplayconfig.qti.so": {
+      "sha256": "bb0c2b77ab1fb360f1c995c283a0718cf18c7d367cfc9af85f08689d86ab64ca",
+      "needed": [
+        "liblog.so",
+        "libhidlbase.so",
+        "libutils.so",
+        "vendor.display.config@2.0.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ]
+    },
+    "vendor.display.config@2.0.so": {
+      "sha256": "ae7485ce1c8f86cc1402abc00e06dcdff71e61a3b40556b0f8a7256c810c2fc5",
+      "needed": [
+        "libhidlbase.so",
+        "liblog.so",
+        "libutils.so",
+        "libcutils.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ]
+    },
+    "libdrm.so": {
+      "sha256": "28cb1c84cb0b59bc6f9dda0fefef7a553747ce6f1384327ebdf6b16f3408fa62",
+      "needed": [
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ]
+    },
+    "libssd.so": {
+      "sha256": "667b6ec360b6a14538a231379966726ea6b1e4c2a209d808aa4a0d509679b253",
+      "needed": [
+        "libutils.so",
+        "libcutils.so",
+        "libdiag.so",
+        "liblog.so",
+        "libQSEEComAPI.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ]
+    },
+    "librpmb.so": {
+      "sha256": "5b881d3e30e05021cfc67697e265df8b6eca9530e890ff7f4ed98e25eb01d731",
+      "needed": [
+        "libutils.so",
+        "libQSEEComAPI.so",
+        "liblog.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ]
+    },
+    "libgpt.so": {
+      "sha256": "8a6e46903b870068276abed89bd7bce01da3cfc0aa3e60ef82e3815aae7288f7",
+      "needed": [
+        "libutils.so",
+        "libQSEEComAPI.so",
+        "liblog.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ]
+    }
+  },
+  "missing": []
+}

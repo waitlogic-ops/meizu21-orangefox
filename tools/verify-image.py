@@ -53,6 +53,10 @@ def verify(path):
                 'system/bin/hw/android.hardware.boot-service.qti.recovery']
     for name in required:
         assert name in entries, 'Missing ' + name
+    # qseecomd loads these listeners with dlopen; DT_NEEDED alone misses them.
+    for lib in ('libgpt.so', 'librpmb.so', 'libssd.so', 'libops.so',
+                'libGPreqcancel.so', 'libqisl.so', 'libdrmtime.so', 'libspl.so'):
+        assert 'vendor/lib64/' + lib in entries, 'Missing QSEE runtime listener: ' + lib
     fstab = entries['system/etc/recovery.fstab'][1].decode()
     assert 'v2+inlinecrypt_optimized+wrappedkey_v0' in fstab
     assert 'metadata_encryption=aes-256-xts:wrappedkey_v0' in fstab

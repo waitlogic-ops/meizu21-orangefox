@@ -47,7 +47,13 @@ def verify(path):
                               capture_output=True, check=True).stdout
     entries = cpio_entries(unpacked)
     required = ['system/bin/recovery', 'system/etc/recovery.fstab',
-                'init.recovery.qcom.rc',
+                'init.recovery.qcom.rc', 'init.recovery.meizu21-services.rc',
+                'vendor/bin/qseecomd', 'vendor/bin/pd-mapper',
+                'vendor/bin/hw/android.hardware.gatekeeper-service-qti',
+                'odm/etc/aac_richtap.config',
+                'vendor/etc/vintf/manifest/meizu21-recovery.xml',
+                'vendor/etc/vintf/manifest/android.hardware.security.keymint-service-qti.xml',
+                'vendor/etc/vintf/manifest/vendor.qti.hardware.vibrator.service.xml',
                 'vendor/bin/hw/android.hardware.security.keymint-service-qti',
                 'vendor/bin/hw/vendor.qti.hardware.vibrator.service',
                 'system/bin/hw/android.hardware.boot-service.qti.recovery']

@@ -1,0 +1,122 @@
+Minimum libavb version:   1.0
+Header Block:             256 bytes
+Authentication Block:     576 bytes
+Auxiliary Block:          7296 bytes
+Public key (sha1):        b816a45d12e7328c8562fc4ab4f21c6d7f3ce956
+Algorithm:                SHA256_RSA4096
+Rollback Index:           0
+Flags:                    0
+Rollback Index Location:  0
+Release String:           'avbtool 1.2.0'
+Descriptors:
+    Chain Partition descriptor:
+      Partition Name:          boot
+      Rollback Index Location: 3
+      Public key (sha1):       b816a45d12e7328c8562fc4ab4f21c6d7f3ce956
+      Flags:                   0
+    Chain Partition descriptor:
+      Partition Name:          recovery
+      Rollback Index Location: 1
+      Public key (sha1):       b816a45d12e7328c8562fc4ab4f21c6d7f3ce956
+      Flags:                   0
+    Chain Partition descriptor:
+      Partition Name:          vbmeta_system
+      Rollback Index Location: 2
+      Public key (sha1):       cdbb77177f731920bbe0a0f94f84d9038ae0617d
+      Flags:                   0
+    Prop: com.android.build.init_boot.os_version -> '14'
+    Prop: com.android.build.init_boot.fingerprint -> 'meizu/meizu_21/meizu21:14/UKQ1.230917.001/1724151849:user/release-keys'
+    Prop: com.android.build.init_boot.security_patch -> '2023-10-05'
+    Prop: com.android.build.vendor_boot.fingerprint -> 'meizu/meizu_21/meizu21:14/UKQ1.230917.001/1724151849:user/release-keys'
+    Prop: com.android.build.vendor.os_version -> '14'
+    Prop: com.android.build.vendor.fingerprint -> 'meizu/meizu_21/meizu21:14/UKQ1.230917.001/1724151849:user/release-keys'
+    Prop: com.android.build.vendor.security_patch -> '2023-10-05'
+    Prop: com.android.build.vendor.security_patch -> '2023-10-05'
+    Prop: com.android.build.odm.os_version -> '14'
+    Prop: com.android.build.odm.fingerprint -> 'meizu/meizu_21/meizu21:14/UKQ1.230917.001/1724151849:user/release-keys'
+    Prop: com.android.build.vendor_dlkm.os_version -> '14'
+    Prop: com.android.build.vendor_dlkm.fingerprint -> 'meizu/meizu_21/meizu21:14/UKQ1.230917.001/1724151849:user/release-keys'
+    Prop: com.android.build.system_dlkm.os_version -> '14'
+    Prop: com.android.build.system_dlkm.fingerprint -> 'meizu/meizu_21/meizu21:14/UKQ1.230917.001/1724151849:user/release-keys'
+    Prop: com.android.build.dtbo.fingerprint -> 'meizu/meizu_21/meizu21:14/UKQ1.230917.001/1724151849:user/release-keys'
+    Hash descriptor:
+      Image Size:            13480462 bytes
+      Hash Algorithm:        sha256
+      Partition Name:        dtbo
+      Salt:                  6c423b942bc827fcfaaa15e01adb35e4096f8cce9781dd13a30401266cbd33e5
+      Digest:                6d185c60fa687fda239079190d5807b6748c7257bd06ecf7eb7c3a02001a47fe
+      Flags:                 0
+    Hash descriptor:
+      Image Size:            2121728 bytes
+      Hash Algorithm:        sha256
+      Partition Name:        init_boot
+      Salt:                  6c423b942bc827fcfaaa15e01adb35e4096f8cce9781dd13a30401266cbd33e5
+      Digest:                70946274760c4776ca93fe04ee49d38d91a699b542aaf4369d0d43111bab5791
+      Flags:                 0
+    Hash descriptor:
+      Image Size:            10469376 bytes
+      Hash Algorithm:        sha256
+      Partition Name:        vendor_boot
+      Salt:                  6c423b942bc827fcfaaa15e01adb35e4096f8cce9781dd13a30401266cbd33e5
+      Digest:                08f2bde4ae92e35d410044d324c692fd8b3d5932dbe30c73968e74d806ff6091
+      Flags:                 0
+    Hashtree descriptor:
+      Version of dm-verity:  1
+      Image Size:            667648 bytes
+      Tree Offset:           667648
+      Tree Size:             12288 bytes
+      Data Block Size:       4096 bytes
+      Hash Block Size:       4096 bytes
+      FEC num roots:         2
+      FEC offset:            679936
+      FEC size:              8192 bytes
+      Hash Algorithm:        sha256
+      Partition Name:        odm
+      Salt:                  6c423b942bc827fcfaaa15e01adb35e4096f8cce9781dd13a30401266cbd33e5
+      Root Digest:           85b59a1b15370fd0d2c56d1929d26ce4f62881a08322d12b0be3cdd2472dc81a
+      Flags:                 0
+    Hashtree descriptor:
+      Version of dm-verity:  1
+      Image Size:            3436544 bytes
+      Tree Offset:           3436544
+      Tree Size:             32768 bytes
+      Data Block Size:       4096 bytes
+      Hash Block Size:       4096 bytes
+      FEC num roots:         2
+      FEC offset:            3469312
+      FEC size:              32768 bytes
+      Hash Algorithm:        sha256
+      Partition Name:        system_dlkm
+      Salt:                  6c423b942bc827fcfaaa15e01adb35e4096f8cce9781dd13a30401266cbd33e5
+      Root Digest:           5e50aafcca9bcc9015ed1c8e3b217bd5426bdf75c3c0adf60df57123c7e6e93a
+      Flags:                 0
+    Hashtree descriptor:
+      Version of dm-verity:  1
+      Image Size:            1187905536 bytes
+      Tree Offset:           1187905536
+      Tree Size:             9359360 bytes
+      Data Block Size:       4096 bytes
+      Hash Block Size:       4096 bytes
+      FEC num roots:         2
+      FEC offset:            1197264896
+      FEC size:              9469952 bytes
+      Hash Algorithm:        sha256
+      Partition Name:        vendor
+      Salt:                  6c423b942bc827fcfaaa15e01adb35e4096f8cce9781dd13a30401266cbd33e5
+      Root Digest:           fd5d38c656ac3035d6b55567baf7d712563384bf4ee5625476dee98e4c96fcca
+      Flags:                 0
+    Hashtree descriptor:
+      Version of dm-verity:  1
+      Image Size:            25653248 bytes
+      Tree Offset:           25653248
+      Tree Size:             204800 bytes
+      Data Block Size:       4096 bytes
+      Hash Block Size:       4096 bytes
+      FEC num roots:         2
+      FEC offset:            25858048
+      FEC size:              204800 bytes
+      Hash Algorithm:        sha256
+      Partition Name:        vendor_dlkm
+      Salt:                  6c423b942bc827fcfaaa15e01adb35e4096f8cce9781dd13a30401266cbd33e5
+      Root Digest:           a10d1c369117079fbb3afe2558dada8b17ef9d57d7f068db308972d3c230e43c
+      Flags:                 0

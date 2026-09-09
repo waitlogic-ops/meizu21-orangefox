@@ -1,0 +1,51 @@
+name: Meizu 21 OrangeFox
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: orangefox-meizu21-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  recovery:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Prepare temporary runner
+        run: bash ci/prepare.sh
+      - name: Sync official OrangeFox sources
+        run: |
+          sudo python3 ci/watch.py /content 8 -- runuser -u foxbuild -- bash /content/fox-kit/tools/sync.sh 2>&1 | tee /content/fox-logs/sync.log
+      - name: Install Meizu 21 device tree
+        run: |
+          sudo install -d -o foxbuild -g foxbuild /content/fox-work/fox_14.1/device/meizu
+          sudo cp -a /content/fox-kit/device/meizu/meizu21 /content/fox-work/fox_14.1/device/meizu/
+          sudo chown -R foxbuild:foxbuild /content/fox-work/fox_14.1/device/meizu/meizu21
+          df -h /content
+      - name: Build recovery
+        run: |
+          sudo python3 ci/watch.py /content 8 -- runuser -u foxbuild -- bash /content/fox-kit/tools/build.sh 2>&1 | tee /content/fox-logs/build.log
+      - name: Verify candidate image
+        run: bash ci/verify.sh
+      - name: Save logs even on failure
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: meizu21-build-logs-${{ github.run_id }}
+          path: /content/fox-logs/
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Save verified test candidate
+        if: success()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: meizu21-OrangeFox-UNTESTED-${{ github.run_id }}
+          path: /content/fox-artifacts/
+          if-no-files-found: error
+          retention-days: 7

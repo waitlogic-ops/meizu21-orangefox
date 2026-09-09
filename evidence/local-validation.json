@@ -1,0 +1,10 @@
+{
+  "shell_syntax": "passed",
+  "python_syntax": "passed",
+  "xml_parse": "passed",
+  "stock_startup_image_sha256": "7 of 7 unchanged",
+  "cpio_parser": "parsed 1045 stock entries and rejected malformed data",
+  "source_build": "not yet run",
+  "hardware": "not tested",
+  "firmware_sources_modified": false
+}

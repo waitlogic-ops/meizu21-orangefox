@@ -1,0 +1,8 @@
+{
+  "sync_commit": "14eca5f7ef82c9dacfe353db8b93329383c7293f",
+  "recovery_audited_commit": "3c25c7d88a8760ae31f489c5971e60534e1a419e",
+  "branch": "fox_14.1",
+  "base_release": "R12.0",
+  "audited_at": "2026-09-08",
+  "note": "Sync helper is pinned; each cloud build resolves branch HEAD and saves a repo manifest with exact commits."
+}

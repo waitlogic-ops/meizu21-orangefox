@@ -1,0 +1,75 @@
+Minimum libavb version:   1.0
+Header Block:             256 bytes
+Authentication Block:     320 bytes
+Auxiliary Block:          2752 bytes
+Public key (sha1):        cdbb77177f731920bbe0a0f94f84d9038ae0617d
+Algorithm:                SHA256_RSA2048
+Rollback Index:           1725494400
+Flags:                    0
+Rollback Index Location:  0
+Release String:           'avbtool 1.2.0'
+Descriptors:
+    Prop: com.android.build.system.os_version -> '14'
+    Prop: com.android.build.system.fingerprint -> 'meizu/meizu_21/meizu21:14/UKQ1.230917.001/1724151849:user/release-keys'
+    Prop: com.android.build.system.security_patch -> '2024-09-05'
+    Prop: com.android.build.system.security_patch -> '2024-09-05'
+    Prop: com.android.build.product.os_version -> '14'
+    Prop: com.android.build.product.fingerprint -> 'meizu/meizu_21/meizu21:14/UKQ1.230917.001/1724151849:user/release-keys'
+    Prop: com.android.build.product.security_patch -> '2024-09-05'
+    Prop: com.android.build.product.security_patch -> '2024-09-05'
+    Prop: com.android.build.system_ext.os_version -> '14'
+    Prop: com.android.build.system_ext.fingerprint -> 'meizu/meizu_21/meizu21:14/UKQ1.230917.001/1724151849:user/release-keys'
+    Prop: com.android.build.system_ext.security_patch -> '2024-09-05'
+    Prop: com.android.build.pvmfw.fingerprint -> 'meizu/meizu_21/meizu21:14/UKQ1.230917.001/1724151849:user/release-keys'
+    Hash descriptor:
+      Image Size:            442368 bytes
+      Hash Algorithm:        sha256
+      Partition Name:        pvmfw
+      Salt:                  6c423b942bc827fcfaaa15e01adb35e4096f8cce9781dd13a30401266cbd33e5
+      Digest:                5b8a0d9d1ea801801b45b8ed98d056624af85f8e3613efea559c9b544e0eaf65
+      Flags:                 0
+    Hashtree descriptor:
+      Version of dm-verity:  1
+      Image Size:            1637896192 bytes
+      Tree Offset:           1637896192
+      Tree Size:             12906496 bytes
+      Data Block Size:       4096 bytes
+      Hash Block Size:       4096 bytes
+      FEC num roots:         2
+      FEC offset:            1650802688
+      FEC size:              13049856 bytes
+      Hash Algorithm:        sha256
+      Partition Name:        product
+      Salt:                  6c423b942bc827fcfaaa15e01adb35e4096f8cce9781dd13a30401266cbd33e5
+      Root Digest:           528ba344bd2926d11e27db0ffa27692e248cfe55b24dcd08c1a5bb1f87b21349
+      Flags:                 0
+    Hashtree descriptor:
+      Version of dm-verity:  1
+      Image Size:            1489768448 bytes
+      Tree Offset:           1489768448
+      Tree Size:             11739136 bytes
+      Data Block Size:       4096 bytes
+      Hash Block Size:       4096 bytes
+      FEC num roots:         2
+      FEC offset:            1501507584
+      FEC size:              11870208 bytes
+      Hash Algorithm:        sha256
+      Partition Name:        system
+      Salt:                  6c423b942bc827fcfaaa15e01adb35e4096f8cce9781dd13a30401266cbd33e5
+      Root Digest:           9b9f3e07930f394f2445a63dd9c6e826343704b29d4bd125ea6d6ff608ba2579
+      Flags:                 0
+    Hashtree descriptor:
+      Version of dm-verity:  1
+      Image Size:            475820032 bytes
+      Tree Offset:           475820032
+      Tree Size:             3756032 bytes
+      Data Block Size:       4096 bytes
+      Hash Block Size:       4096 bytes
+      FEC num roots:         2
+      FEC offset:            479576064
+      FEC size:              3792896 bytes
+      Hash Algorithm:        sha256
+      Partition Name:        system_ext
+      Salt:                  6c423b942bc827fcfaaa15e01adb35e4096f8cce9781dd13a30401266cbd33e5
+      Root Digest:           4b48eff5165f9b7e2a3aaa64a4d6a4e4682b2bb305eecee74dbe09a237f4935a
+      Flags:                 0

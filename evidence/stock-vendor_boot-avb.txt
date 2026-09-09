@@ -1,0 +1,24 @@
+Footer version:           1.0
+Image size:               100663296 bytes
+Original image size:      10469376 bytes
+VBMeta offset:            10469376
+VBMeta size:              640 bytes
+--
+Minimum libavb version:   1.0
+Header Block:             256 bytes
+Authentication Block:     0 bytes
+Auxiliary Block:          384 bytes
+Algorithm:                NONE
+Rollback Index:           0
+Flags:                    0
+Rollback Index Location:  0
+Release String:           'avbtool 1.2.0'
+Descriptors:
+    Hash descriptor:
+      Image Size:            10469376 bytes
+      Hash Algorithm:        sha256
+      Partition Name:        vendor_boot
+      Salt:                  6c423b942bc827fcfaaa15e01adb35e4096f8cce9781dd13a30401266cbd33e5
+      Digest:                08f2bde4ae92e35d410044d324c692fd8b3d5932dbe30c73968e74d806ff6091
+      Flags:                 0
+    Prop: com.android.build.vendor_boot.fingerprint -> 'meizu/meizu_21/meizu21:14/UKQ1.230917.001/1724151849:user/release-keys'

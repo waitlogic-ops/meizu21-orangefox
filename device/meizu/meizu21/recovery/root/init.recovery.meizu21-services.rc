@@ -1,0 +1,35 @@
+# SPDX-License-Identifier: Apache-2.0
+# Service paths and users follow supplied firmware; no credentials are embedded.
+service vendor.boot-qti /system/bin/hw/android.hardware.boot-service.qti.recovery
+    seclabel u:r:recovery:s0
+    class hal
+    user root
+    group root
+    interface aidl android.hardware.boot.IBootControl/default
+
+service vendor.qseecomd /vendor/bin/qseecomd
+    seclabel u:r:recovery:s0
+    socket notify-topology stream 660 system drmrpc
+    class hal
+    user root
+    group root drmrpc
+
+service vendor.keymint-qti /vendor/bin/hw/android.hardware.security.keymint-service-qti
+    seclabel u:r:recovery:s0
+    class hal
+    user system
+    group system drmrpc
+
+service vendor.gatekeeper_default /vendor/bin/hw/android.hardware.gatekeeper-service-qti
+    seclabel u:r:recovery:s0
+    class hal
+    user system
+    group system
+
+service vendor.qti.vibrator /vendor/bin/hw/vendor.qti.hardware.vibrator.service
+    seclabel u:r:recovery:s0
+    class hal
+    user system
+    group system input
+    setenv RICHTAP_DEVICE_PATH /dev/aac_richtap_dev
+    setenv ENV_RICHTAP_CONFIG_PATH /odm/etc/aac_richtap.config

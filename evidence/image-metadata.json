@@ -1,0 +1,62 @@
+{
+  "boot": {
+    "size": 100663296,
+    "sha256": "ec81555997573ef2c5fe1d63930d84eaba3f4b92885f2e33092e942615d3255e",
+    "header_version": 4,
+    "kernel_size": 33892864,
+    "ramdisk_size": 0,
+    "os_version": "14.0.0",
+    "patch": "2023-10"
+  },
+  "recovery": {
+    "size": 104857600,
+    "sha256": "c1ed5ccd6d575ed9e3f991b5f2ee4219108afa62c8e22f0b0b976ea2a2378f3d",
+    "header_version": 4,
+    "kernel_size": 0,
+    "ramdisk_size": 17248022,
+    "os_version": "14.0.0",
+    "patch": "2023-10"
+  },
+  "init_boot": {
+    "size": 8388608,
+    "sha256": "e2a2b56b741cd1474a365e21354e5c522e01ebb9e18fb8cfd5e2f8f23e34556b",
+    "header_version": 4,
+    "kernel_size": 0,
+    "ramdisk_size": 2115437,
+    "os_version": "14.0.0",
+    "patch": "2023-10"
+  },
+  "vendor_boot": {
+    "size": 100663296,
+    "sha256": "fa682e3c1b233d0e66a86385e1ec0d4c84963ef66bd8d1d1cba1f94f93fb246a",
+    "header_version": 4,
+    "page_size": 4096,
+    "ramdisk_size": 9280572,
+    "dtb_size": 1171947,
+    "table_size": 108,
+    "table_entries": 1,
+    "entry_size": 108,
+    "bootconfig_size": 152,
+    "cmdline": "video=vfb:640x400,bpp=32,memsize=3072000 console=ttyMSM0,115200n8 earlycon qcom_geni_serial.con_enabled=1 nosoftlockup sysrq_always_enabled bootconfig",
+    "fragments": [
+      {
+        "size": 9280572,
+        "offset": 0,
+        "type": 1,
+        "name": ""
+      }
+    ]
+  },
+  "dtbo": {
+    "size": 25165824,
+    "sha256": "32859f31a23248397d85799a69e6410c7727a7ccbc8d9aa3060542c57e0a2238"
+  },
+  "vbmeta": {
+    "size": 8192,
+    "sha256": "9f7edd43c385cd31e61ee5af087bff0dcec05cc63cbaae5ba6e5e5f846f7718c"
+  },
+  "vbmeta_system": {
+    "size": 4096,
+    "sha256": "f7707e7135e0d411f24e51d059c0701152320f34c63130e2f3df249f92b7312b"
+  }
+}

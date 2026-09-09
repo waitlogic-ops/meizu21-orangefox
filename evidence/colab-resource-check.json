@@ -1,0 +1,12 @@
+{
+  "checked_at": "2026-09-08 16:19 America/Matamoros",
+  "architecture": "x86_64",
+  "CPUs": 2,
+  "RAM_GiB": 12.7,
+  "disk_free_GiB": 87.6,
+  "disk_total_GiB": 107.72,
+  "passed": true,
+  "reason": "Rechecked against published 85 GB floor; 110 GiB is a recommendation, not a mandatory requirement",
+  "notebook": "https://colab.research.google.com/drive/1NMNNpr5PvNJkpx1YtRPmkNLHjpIsrB1U",
+  "initial_conservative_gate_passed": false
+}

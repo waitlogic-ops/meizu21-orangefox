@@ -1,0 +1,26 @@
+Footer version:           1.0
+Image size:               8388608 bytes
+Original image size:      2121728 bytes
+VBMeta offset:            2121728
+VBMeta size:              832 bytes
+--
+Minimum libavb version:   1.0
+Header Block:             256 bytes
+Authentication Block:     0 bytes
+Auxiliary Block:          576 bytes
+Algorithm:                NONE
+Rollback Index:           0
+Flags:                    0
+Rollback Index Location:  0
+Release String:           'avbtool 1.2.0'
+Descriptors:
+    Hash descriptor:
+      Image Size:            2121728 bytes
+      Hash Algorithm:        sha256
+      Partition Name:        init_boot
+      Salt:                  6c423b942bc827fcfaaa15e01adb35e4096f8cce9781dd13a30401266cbd33e5
+      Digest:                70946274760c4776ca93fe04ee49d38d91a699b542aaf4369d0d43111bab5791
+      Flags:                 0
+    Prop: com.android.build.init_boot.os_version -> '14'
+    Prop: com.android.build.init_boot.fingerprint -> 'meizu/meizu_21/meizu21:14/UKQ1.230917.001/1724151849:user/release-keys'
+    Prop: com.android.build.init_boot.security_patch -> '2023-10-05'

@@ -1,0 +1,17 @@
+{
+  "status": "local syntax and low-disk guard passed",
+  "checked": [
+    "tools/setup-colab.sh",
+    "tools/collect-device.sh",
+    "tools/build.sh",
+    "tools/sync.sh",
+    "ci/verify.sh",
+    "ci/prepare.sh",
+    "device/meizu/meizu21/vendorsetup.sh",
+    "tools/verify-image.py",
+    "tools/preflight.py",
+    "ci/watch.py"
+  ],
+  "github_run_started": false,
+  "recovery_built": false
+}

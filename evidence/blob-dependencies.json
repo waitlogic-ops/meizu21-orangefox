@@ -1,0 +1,315 @@
+{
+  "vendor_files": {
+    "bin/qseecomd": [
+      "libcutils.so",
+      "libutils.so",
+      "liblog.so",
+      "libQSEEComAPI.so",
+      "libdrmfs.so",
+      "libminkdescriptor.so",
+      "libdmabufheap.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/libminkdescriptor.so": [
+      "liblog.so",
+      "libutils.so",
+      "libqcbor.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/libqcbor.so": [
+      "liblog.so",
+      "libutils.so",
+      "libcutils.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/libdrmfs.so": [
+      "libutils.so",
+      "libcutils.so",
+      "libdiag.so",
+      "liblog.so",
+      "libQSEEComAPI.so",
+      "libxml2.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/libQSEEComAPI.so": [
+      "libdmabufheap.so",
+      "liblog.so",
+      "libutils.so",
+      "libqcbor.so",
+      "libminkdescriptor.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/libdiag.so": [
+      "liblog.so",
+      "libc.so",
+      "libcutils.so",
+      "libc++.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "bin/hw/vendor.qti.hardware.vibrator.service": [
+      "libcutils.so",
+      "libutils.so",
+      "libbase.so",
+      "libbinder_ndk.so",
+      "android.hardware.vibrator-V2-ndk.so",
+      "vendor.aac.hardware.richtap.vibrator-V1-ndk_platform.so",
+      "vendor.qti.hardware.vibrator.impl.so",
+      "libaacvibrator.so",
+      "liblog.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/libaacvibrator.so": [
+      "liblog.so",
+      "libcutils.so",
+      "libutils.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/vendor.qti.hardware.vibrator.impl.so": [
+      "libcutils.so",
+      "libutils.so",
+      "liblog.so",
+      "libqtivibratoreffect.so",
+      "libsoc_helper.so",
+      "libbinder_ndk.so",
+      "android.hardware.vibrator-V2-ndk.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/android.hardware.vibrator-V2-ndk.so": [
+      "libbinder_ndk.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/libsoc_helper.so": [
+      "libcutils.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/libqtivibratoreffect.so": [
+      "libcutils.so",
+      "libutils.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/vendor.aac.hardware.richtap.vibrator-V1-ndk_platform.so": [
+      "libbinder_ndk.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "bin/hw/android.hardware.gatekeeper-service-qti": [
+      "libqtigatekeeper.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/hw/libqtigatekeeper.so": [
+      "android.hardware.gatekeeper-V1-ndk.so",
+      "libhardware.so",
+      "libbinder_ndk.so",
+      "libbase.so",
+      "libutils.so",
+      "liblog.so",
+      "libcutils.so",
+      "libgatekeeper.so",
+      "libkeymasterdeviceutils.so",
+      "libqcbor.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/libkeymasterdeviceutils.so": [
+      "libion.so",
+      "libcutils.so",
+      "liblog.so",
+      "libcrypto.so",
+      "libdmabufheap.so",
+      "libminkdescriptor.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/android.hardware.gatekeeper-V1-ndk.so": [
+      "libbinder_ndk.so",
+      "android.hardware.security.keymint-V3-ndk.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/android.hardware.security.keymint-V3-ndk.so": [
+      "libbinder_ndk.so",
+      "android.hardware.security.secureclock-V1-ndk.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/android.hardware.security.secureclock-V1-ndk.so": [
+      "libbinder_ndk.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "bin/hw/android.hardware.security.keymint-service-qti": [
+      "liblog.so",
+      "libcutils.so",
+      "libbase.so",
+      "libutils.so",
+      "libhardware.so",
+      "libbinder_ndk.so",
+      "libhidlbase.so",
+      "android.hardware.keymaster@4.0.so",
+      "libqtikeymint.so",
+      "libcrypto.so",
+      "android.hardware.security.keymint-V3-ndk.so",
+      "android.hardware.security.rkp-V3-ndk.so",
+      "android.hardware.security.secureclock-V1-ndk.so",
+      "android.hardware.security.sharedsecret-V1-ndk.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/android.hardware.security.sharedsecret-V1-ndk.so": [
+      "libbinder_ndk.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/android.hardware.security.rkp-V3-ndk.so": [
+      "libbinder_ndk.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/libqtikeymint.so": [
+      "liblog.so",
+      "libcrypto.so",
+      "libhidlbase.so",
+      "libutils.so",
+      "libcutils.so",
+      "libkeymasterdeviceutils.so",
+      "libbase.so",
+      "libqcbor.so",
+      "libkeymaster_messages.so",
+      "android.hardware.keymaster@4.0.so",
+      "android.hardware.keymaster@4.1.so",
+      "android.hardware.security.keymint-V3-ndk.so",
+      "android.hardware.security.rkp-V3-ndk.so",
+      "android.hardware.security.secureclock-V1-ndk.so",
+      "android.hardware.security.sharedsecret-V1-ndk.so",
+      "libbinder_ndk.so",
+      "libkeymasterutils.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/libkeymasterutils.so": [
+      "libcutils.so",
+      "libQSEEComAPI.so",
+      "liblog.so",
+      "libcrypto.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/android.hardware.keymaster@4.1.so": [
+      "android.hardware.keymaster@3.0.so",
+      "android.hardware.keymaster@4.0.so",
+      "libhidlbase.so",
+      "liblog.so",
+      "libutils.so",
+      "libcutils.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/android.hardware.keymaster@4.0.so": [
+      "android.hardware.keymaster@3.0.so",
+      "libhidlbase.so",
+      "liblog.so",
+      "libutils.so",
+      "libcutils.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/android.hardware.keymaster@3.0.so": [
+      "libhidlbase.so",
+      "liblog.so",
+      "libutils.so",
+      "libcutils.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ],
+    "lib64/libkeymaster_messages.so": [
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ]
+  },
+  "source_built_platform_sonames": [
+    "libbase.so",
+    "libbinder_ndk.so",
+    "libc++.so",
+    "libc.so",
+    "libcrypto.so",
+    "libcutils.so",
+    "libdl.so",
+    "libdmabufheap.so",
+    "libgatekeeper.so",
+    "libhardware.so",
+    "libhidlbase.so",
+    "libion.so",
+    "liblog.so",
+    "libm.so",
+    "libutils.so",
+    "libxml2.so"
+  ],
+  "note": "DT_NEEDED closure only; dlopen, symbols and namespaces still need target checks."
+}

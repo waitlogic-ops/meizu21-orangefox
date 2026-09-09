@@ -30,6 +30,7 @@ BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
 AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS := boot dtbo init_boot odm recovery system_dlkm vbmeta vendor vendor_boot vendor_dlkm
 # Do not guess super size/group geometry from the sum of extracted images.
+TARGET_COPY_OUT_VENDOR := vendor
 BOARD_USES_METADATA_PARTITION := true
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 TARGET_USERIMAGES_USE_F2FS := true

@@ -17,5 +17,15 @@ jobs=$((ram_kib / 6291456))
 (( jobs <= 4 )) || jobs=4
 cpu_count=$(nproc)
 (( jobs <= cpu_count )) || jobs=$cpu_count
+# Earlier attempts used the platform default /vendor -> /system/vendor.
+# Remove only that generated symlink before retrying with a real vendor directory.
+root_vendor=out/target/product/meizu21/root/vendor
+if [[ -L "$root_vendor" ]]; then
+    link_target=$(readlink "$root_vendor")
+    case "$link_target" in
+        /system/vendor|system/vendor) rm "$root_vendor"; mkdir -p "$root_vendor" ;;
+        *) echo "Unexpected generated vendor symlink: $link_target"; exit 1 ;;
+    esac
+fi
 export USE_CCACHE=0
 mka -j"$jobs" adbd recoveryimage

@@ -31,3 +31,5 @@
 ## 原厂固件分区
 
 依据原厂 fstab 的 modem/VFAT/slotselect 条目，在 fs 阶段只读挂载当前槽 modem 分区到 /firmware。ueventd 已配置 /firmware/image 固件搜索路径，供原厂驱动加载。未修改或重新编译固件分区；实际驱动加载结果仍需 dmesg 验证。
+
+原厂 init.qti.kernel.rc 在 early-boot 启动 pd-mapper 并写入 boot_adsp/boot。已复用原厂 pd-mapper 及依赖，在模块加载后启动 ADSP；未强制 SSR 重启，服务注册和电量状态需真机确认。

@@ -40,6 +40,10 @@ on property:vendor.sys.listeners.registered=true && property:meizu21.crypto.prop
 
 # Module loading publishes this before the recovery UI is started.
 on property:twrp.modules.loaded=true
+    symlink /firmware /vendor/firmware_mnt
+    start vendor.pd_mapper
+    wait /sys/kernel/boot_adsp/boot 5
+    write /sys/kernel/boot_adsp/boot 1
     chmod 0660 /dev/aac_richtap_dev
     chown system input /dev/aac_richtap_dev
     start vendor.qti.vibrator

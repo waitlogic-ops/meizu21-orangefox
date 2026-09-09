@@ -1,0 +1,78 @@
+{
+  "pd-mapper": {
+    "sha256": "5d3a65916f0541036fb7c5c606c2bc7ac3b130d5ccae9e3fa61ea00e922731a6",
+    "needed": [
+      "libcutils.so",
+      "libutils.so",
+      "liblog.so",
+      "libjson.so",
+      "libqmi_cci.so",
+      "libqmi_common_so.so",
+      "libqmi_encdec.so",
+      "libqmi_csi.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ]
+  },
+  "libqmi_csi.so": {
+    "sha256": "d7993ec2a5a09c56d29ef3fd03ba5c95e8f7392f3e8d7843a8578f81470cb09c",
+    "needed": [
+      "libcutils.so",
+      "libutils.so",
+      "libqmi_encdec.so",
+      "liblog.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ]
+  },
+  "libqmi_encdec.so": {
+    "sha256": "090b42bc0d69f81a7894fec96c87b183122c66b858892c47c6290ce41e06c236",
+    "needed": [
+      "libcutils.so",
+      "libutils.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ]
+  },
+  "libqmi_common_so.so": {
+    "sha256": "ca599505ab61e0e07373e3d3ddfc698df9b621bae2399f63c8b693240f3b0993",
+    "needed": [
+      "libcutils.so",
+      "libutils.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ]
+  },
+  "libqmi_cci.so": {
+    "sha256": "b05610031a16e1a8e2289dd254bbbcda3a63c556c03ff5471a1ed5ef091ae1e0",
+    "needed": [
+      "libcutils.so",
+      "libutils.so",
+      "libqmi_encdec.so",
+      "liblog.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ]
+  },
+  "libjson.so": {
+    "sha256": "eb1c5c49b72d8060466995466bce7b9f97b212e10403257912213832216ccc17",
+    "needed": [
+      "libcutils.so",
+      "libutils.so",
+      "libc++.so",
+      "libc.so",
+      "libm.so",
+      "libdl.so"
+    ]
+  }
+}

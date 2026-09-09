@@ -23,8 +23,13 @@ on boot
     chown system input /dev/aac_richtap_dev
     start vendor.boot-qti
 
-# The stock QSEE listener opens this partition; wait for ueventd first.
+# Mount the stock slot firmware read-only before late driver/service startup.
+# /firmware/image is already in this device tree's ueventd firmware search path.
 on fs
+    mkdir /firmware 0755 root root
+    wait /dev/block/bootdevice/by-name/modem${ro.boot.slot_suffix} 10
+    mount vfat /dev/block/bootdevice/by-name/modem${ro.boot.slot_suffix} /firmware ro
+    # The QSEE SSD listener opens this partition; wait for ueventd first.
     wait /dev/block/bootdevice/by-name/ssd 10
     start vendor.qseecomd
 

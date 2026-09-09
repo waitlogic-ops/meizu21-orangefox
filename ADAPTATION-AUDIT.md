@@ -27,3 +27,7 @@
 ## 时间与电量
 
 采用源码支持的 sysfs 电量读取，避免 UI 依赖尚未接入的 vendor health 服务；节点为 /sys/class/power_supply/battery。启用 Qualcomm RTC/ATS 时间修正，未硬编码时间偏移。原厂有 time_daemon，实际 RTC/ATS 可用性及锁定 data 时的时间仍需验证。
+
+## 原厂固件分区
+
+依据原厂 fstab 的 modem/VFAT/slotselect 条目，在 fs 阶段只读挂载当前槽 modem 分区到 /firmware。ueventd 已配置 /firmware/image 固件搜索路径，供原厂驱动加载。未修改或重新编译固件分区；实际驱动加载结果仍需 dmesg 验证。

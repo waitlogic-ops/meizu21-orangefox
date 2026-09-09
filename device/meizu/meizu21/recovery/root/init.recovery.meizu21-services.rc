@@ -30,6 +30,7 @@ service vendor.gatekeeper_default /vendor/bin/hw/android.hardware.gatekeeper-ser
     group system
 
 service vendor.qti.vibrator /vendor/bin/hw/vendor.qti.hardware.vibrator.service
+    disabled
     seclabel u:r:recovery:s0
     class hal
     user system

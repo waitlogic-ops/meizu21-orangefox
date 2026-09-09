@@ -22,7 +22,6 @@ on boot
     chmod 0660 /dev/aac_richtap_dev
     chown system input /dev/aac_richtap_dev
     start vendor.boot-qti
-    start vendor.qti.vibrator
 
 # The stock QSEE listener opens this partition; wait for ueventd first.
 on fs
@@ -33,3 +32,9 @@ on fs
 on property:vendor.sys.listeners.registered=true && property:meizu21.crypto.props_ready=1
     start vendor.keymint-qti
     start vendor.gatekeeper_default
+
+# Module loading publishes this before the recovery UI is started.
+on property:twrp.modules.loaded=true
+    chmod 0660 /dev/aac_richtap_dev
+    chown system input /dev/aac_richtap_dev
+    start vendor.qti.vibrator

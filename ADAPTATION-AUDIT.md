@@ -23,3 +23,7 @@
 ## QSEE 动态加载库修正
 
 原厂 qseecomd 的字符串表与参考服务依赖表明，它运行时加载 libgpt/librpmb/libssd/libops/libGPreqcancel/libqisl/libdrmtime/libspl。已从本地原厂提取目录补齐这些库及其厂商依赖，记录于 evidence/qsee-runtime-dependencies.json；镜像检查现在强制检查这八个入口库。仍需真机验证监听器注册和符号解析成功。
+
+## 时间与电量
+
+采用源码支持的 sysfs 电量读取，避免 UI 依赖尚未接入的 vendor health 服务；节点为 /sys/class/power_supply/battery。启用 Qualcomm RTC/ATS 时间修正，未硬编码时间偏移。原厂有 time_daemon，实际 RTC/ATS 可用性及锁定 data 时的时间仍需验证。

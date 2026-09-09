@@ -76,3 +76,9 @@ RECOVERY_LIBRARY_SOURCE_FILES += $(foreach lib,$(TARGET_RECOVERY_DEVICE_MODULES)
 # Fallback for stock first-stage init: request only modules present in stock evidence.
 TW_LOAD_VENDOR_BOOT_MODULES := true
 TW_LOAD_VENDOR_MODULES := "goodix_ts.ko haptic_aac.ko qcom-hv-haptics.ko qti_battery_charger.ko"
+
+# Read kernel battery nodes directly; a full vendor health daemon is not required.
+TW_USE_LEGACY_BATTERY_SERVICES := true
+TW_CUSTOM_BATTERY_PATH := "/sys/class/power_supply/battery"
+# Use Qualcomm RTC/ATS correction when available; do not invent a fixed offset.
+TARGET_RECOVERY_QCOM_RTC_FIX := true

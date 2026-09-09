@@ -71,7 +71,7 @@ BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 BUILD_BROKEN_PLUGIN_VALIDATION := soong-libaosprecovery_defaults soong-libguitwrp_defaults soong-libminuitwrp_defaults soong-vold_defaults
 
 # Libraries used by stock HALs copied into the recovery ramdisk.
-TARGET_RECOVERY_DEVICE_MODULES += libbase libbinder_ndk libc++ libc libcrypto libcutils libdl libdmabufheap libgatekeeper libhardware libhidlbase libion liblog libm libutils libxml2 libz android.hardware.boot@1.1
+TARGET_RECOVERY_DEVICE_MODULES += libbase libdebuggerd_client libprocinfo libbinder_ndk libc++ libc libcrypto libcutils libdl libdmabufheap libgatekeeper libhardware libhidlbase libion liblog libm libutils libxml2 libz android.hardware.boot@1.1
 RECOVERY_LIBRARY_SOURCE_FILES += $(foreach lib,$(TARGET_RECOVERY_DEVICE_MODULES),$(TARGET_OUT_SHARED_LIBRARIES)/$(lib).so)
 
 # Fallback for stock first-stage init: request only modules present in stock evidence.

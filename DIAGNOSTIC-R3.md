@@ -50,3 +50,7 @@ https://github.com/adontoo/device_meizu_m2481-TWRP/tree/c7cea8004036ca55bc3fce12
 显示阶段号本身会轻微改变启动时序；没有真实启动日志或用户观察，不能确定因果。因为本轮同时改了 APEX 和服务方案，即便启动改善，也不能只归功于其中一项。
 
 本轮不执行任何手机命令。刷入与回滚原则参照 TESTING.md，镜像文件名为 `OrangeFox-meizu21-R3-DIAGNOSTIC.img`。保留原厂 recovery 及用户可启动旧版；不格式化 data/metadata、不修改 vbmeta，不执行 fastboot boot（镜像无内核）。
+
+## 构建依赖修正
+
+运行 34398456503 完成编译，但镜像检查发现新增 debuggerd 缺少 libdebuggerd_client.so 和 libprocinfo.so，因此未发布产物。后续构建将两库加入 recovery 的编译与复制列表；仍须以实际镜像依赖检查通过为准。该问题不能解释此前 R1/R2 的卡屏。

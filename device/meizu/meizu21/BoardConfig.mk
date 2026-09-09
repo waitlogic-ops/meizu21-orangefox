@@ -75,7 +75,7 @@ RECOVERY_LIBRARY_SOURCE_FILES += $(foreach lib,$(TARGET_RECOVERY_DEVICE_MODULES)
 
 # Fallback for stock first-stage init: request only modules present in stock evidence.
 TW_LOAD_VENDOR_BOOT_MODULES := true
-TW_LOAD_VENDOR_MODULES := "goodix_ts.ko haptic_aac.ko qcom-hv-haptics.ko qti_battery_charger.ko"
+TW_LOAD_VENDOR_MODULES := "qrtr.ko qrtr-smd.ko qcom_q6v5_pas.ko goodix_ts.ko haptic_aac.ko qcom-hv-haptics.ko qti_battery_charger.ko"
 
 # Read kernel battery nodes directly; a full vendor health daemon is not required.
 TW_USE_LEGACY_BATTERY_SERVICES := true

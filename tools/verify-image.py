@@ -59,6 +59,13 @@ def verify(path):
                 'system/bin/hw/android.hardware.boot-service.qti.recovery']
     for name in required:
         assert name in entries, 'Missing ' + name
+    usb = entries.get('init.recovery.usb.rc', (0, b''))[1].decode()
+    for token in ('functions/ffs.mtp', 'mount functionfs mtp',
+                  'property:sys.usb.config=mtp,adb', 'property:sys.usb.ffs.mtp.ready=1',
+                  'configs/b.1/f2'):
+        assert token in usb, 'Missing MTP configfs support: ' + token
+    assert '/sys/class/android_usb/' not in usb, 'Unexpected legacy USB override'
+    assert b'skipping automatic decryption' in entries['system/bin/recovery'][1], 'Missing compiled startup timeout guard'
     # qseecomd loads these listeners with dlopen; DT_NEEDED alone misses them.
     for lib in ('libgpt.so', 'librpmb.so', 'libssd.so', 'libops.so',
                 'libGPreqcancel.so', 'libqisl.so', 'libdrmtime.so', 'libspl.so'):

@@ -15,8 +15,12 @@
 		TWFunc::Property_Override("ro.vendor.build.security_patch", vendor_spl);
 		android::base::SetProperty("meizu21.crypto.props_ready", "1");
 		// Init waits for QSEE listeners before starting KeyMint and Gatekeeper.
+		bool meizu21_crypto_services_running = false;
 		for (int i = 0; i < 300; ++i) {
 			if (android::base::GetProperty("init.svc.vendor.keymint-qti", "") == "running" &&
-			    android::base::GetProperty("init.svc.vendor.gatekeeper_default", "") == "running") break;
+			    android::base::GetProperty("init.svc.vendor.gatekeeper_default", "") == "running") {
+				meizu21_crypto_services_running = true;
+				break;
+			}
 			usleep(100000);
 		}

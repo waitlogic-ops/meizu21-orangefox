@@ -9,7 +9,7 @@ python3 "$src/external/avb/avbtool.py" verify_image --image "$img" | tee /conten
 sudo mkdir -p /content/fox-artifacts
 sudo chown "$(id -u):$(id -g)" /content/fox-artifacts
 cp "$img" /content/fox-artifacts/OrangeFox-meizu21-UNTESTED.img
-cp DEVICE-NOTES.md TESTING.md /content/fox-artifacts/
+cp DEVICE-NOTES.md TESTING.md REPAIR-R2.md /content/fox-artifacts/
 cp /content/fox-logs/pinned-manifest.xml /content/fox-artifacts/
 cp /content/fox-logs/device-tree-commit.txt /content/fox-artifacts/
 cp /content/fox-logs/recovery-local.patch /content/fox-artifacts/

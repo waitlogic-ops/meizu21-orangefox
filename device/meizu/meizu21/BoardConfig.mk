@@ -83,3 +83,6 @@ TW_USE_LEGACY_BATTERY_SERVICES := true
 TW_CUSTOM_BATTERY_PATH := "/sys/class/power_supply/battery"
 # Use Qualcomm RTC/ATS correction when available; do not invent a fixed offset.
 TARGET_RECOVERY_QCOM_RTC_FIX := true
+
+# Device USB init extends the generic configfs handlers with FunctionFS MTP.
+TW_EXCLUDE_DEFAULT_USB_INIT := true

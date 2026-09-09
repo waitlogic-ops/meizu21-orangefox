@@ -8,6 +8,7 @@ service vendor.boot-qti /system/bin/hw/android.hardware.boot-service.qti.recover
     interface aidl android.hardware.boot.IBootControl/default
 
 service vendor.qseecomd /vendor/bin/qseecomd
+    disabled
     seclabel u:r:recovery:s0
     socket notify-topology stream 660 system drmrpc
     class hal
@@ -15,12 +16,14 @@ service vendor.qseecomd /vendor/bin/qseecomd
     group root drmrpc
 
 service vendor.keymint-qti /vendor/bin/hw/android.hardware.security.keymint-service-qti
+    disabled
     seclabel u:r:recovery:s0
     class hal
     user system
     group system drmrpc
 
 service vendor.gatekeeper_default /vendor/bin/hw/android.hardware.gatekeeper-service-qti
+    disabled
     seclabel u:r:recovery:s0
     class hal
     user system

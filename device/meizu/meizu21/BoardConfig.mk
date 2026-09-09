@@ -72,3 +72,7 @@ BUILD_BROKEN_PLUGIN_VALIDATION := soong-libaosprecovery_defaults soong-libguitwr
 # Libraries used by stock HALs copied into the recovery ramdisk.
 TARGET_RECOVERY_DEVICE_MODULES += libbase libbinder_ndk libc++ libc libcrypto libcutils libdl libdmabufheap libgatekeeper libhardware libhidlbase libion liblog libm libutils libxml2 libz android.hardware.boot@1.1
 RECOVERY_LIBRARY_SOURCE_FILES += $(foreach lib,$(TARGET_RECOVERY_DEVICE_MODULES),$(TARGET_OUT_SHARED_LIBRARIES)/$(lib).so)
+
+# Fallback for stock first-stage init: request only modules present in stock evidence.
+TW_LOAD_VENDOR_BOOT_MODULES := true
+TW_LOAD_VENDOR_MODULES := "goodix_ts.ko haptic_aac.ko qcom-hv-haptics.ko qti_battery_charger.ko"

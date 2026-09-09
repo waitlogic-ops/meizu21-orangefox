@@ -12,5 +12,7 @@ cp "$img" /content/fox-artifacts/OrangeFox-meizu21-UNTESTED.img
 cp DEVICE-NOTES.md /content/fox-artifacts/
 cp /content/fox-logs/pinned-manifest.xml /content/fox-artifacts/
 cp /content/fox-logs/device-tree-commit.txt /content/fox-artifacts/
+cp /content/fox-logs/recovery-local.patch /content/fox-artifacts/
+tar -czf /content/fox-artifacts/device-tree.tar.gz device/meizu/meizu21 ci
 printf '%s\n' 'Experimental Meizu 21/M2461 image. Hardware and FBE decryption NOT verified. Not for Meizu 21 Pro. Development AVB verification is not OEM authorization.' > /content/fox-artifacts/UNTESTED.txt
 (cd /content/fox-artifacts && sha256sum OrangeFox-meizu21-UNTESTED.img > SHA256SUMS)

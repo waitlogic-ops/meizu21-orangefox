@@ -27,6 +27,8 @@ jobs:
           sudo install -d -o foxbuild -g foxbuild /content/fox-work/fox_14.1/device/meizu
           sudo cp -a /content/fox-kit/device/meizu/meizu21 /content/fox-work/fox_14.1/device/meizu/
           sudo chown -R foxbuild:foxbuild /content/fox-work/fox_14.1/device/meizu/meizu21
+          sudo -u foxbuild python3 /content/fox-kit/ci/patch-source.py /content/fox-work/fox_14.1
+          sudo -u foxbuild git -C /content/fox-work/fox_14.1/bootable/recovery diff > /content/fox-logs/recovery-local.patch
           df -h /content
       - name: Build recovery
         run: |

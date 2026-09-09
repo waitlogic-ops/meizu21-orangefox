@@ -18,7 +18,7 @@ sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /usr/local/.ghcup 
   /home/runner/.rustup /home/runner/.cargo /home/runner/.ghcup
 sudo apt-get clean
 sudo mkdir -p /content/fox-kit
-sudo cp -a device tools evidence /content/fox-kit/
+sudo cp -a device tools evidence ci /content/fox-kit/
 sudo bash /content/fox-kit/tools/setup-colab.sh
 # The runner also needs write access for tee and final diagnostic collection.
 sudo chmod 0777 /content/fox-logs

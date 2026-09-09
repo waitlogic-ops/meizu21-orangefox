@@ -24,12 +24,12 @@ on boot
     start vendor.boot-qti
     start vendor.qti.vibrator
 
-on property:ro.crypto.state=encrypted
+# The stock QSEE listener opens this partition; wait for ueventd first.
+on fs
+    wait /dev/block/bootdevice/by-name/ssd 10
     start vendor.qseecomd
-    start vendor.keymint-qti
-    start vendor.gatekeeper_default
 
-on boot
-    start vendor.qseecomd
+# The source hook signals only after reading the installed OS properties.
+on property:vendor.sys.listeners.registered=true && property:meizu21.crypto.props_ready=1
     start vendor.keymint-qti
     start vendor.gatekeeper_default

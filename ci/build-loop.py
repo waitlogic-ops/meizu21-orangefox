@@ -43,6 +43,9 @@ for attempt in range(1, 9):
         (logs / 'recovery-local.patch').write_text(diff + '\n')
         result = run('bash', str(config / 'tools/build.sh'), cwd=source, check=False)
     if result.returncode == 0:
+        image = source / 'out/target/product/meizu21/recovery.img'
+        result = run('python3', str(config / 'tools/verify-image.py'), str(image), cwd=source, check=False)
+    if result.returncode == 0:
         print('BUILD_SUCCESS: exact device-tree commit recorded above.', flush=True)
         raise SystemExit(0)
     print(f'BUILD_FAILED={result.returncode}; keeping source/out for up to 20 minutes awaiting a new main commit.', flush=True)

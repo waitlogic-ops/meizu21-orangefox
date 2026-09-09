@@ -9,9 +9,4 @@ PRODUCT_PACKAGES += fastbootd android.hardware.fastboot@1.0-impl-mock \
     libbase libbinder_ndk libc++ libc libcrypto libcutils libdl \
     libdmabufheap libgatekeeper libhardware libhidlbase libion liblog libm \
     libutils libxml2 android.hardware.boot@1.1 libz
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.hardware=qcom \
-    ro.product.mobile.name=m2461 \
-    vendor.gatekeeper.disable_spu=true \
-    vendor.gatekeeper.is_security_level_spu=0 \
-    ro.crypto.dm_default_key.options_format.version=2
+PRODUCT_PROPERTY_OVERRIDES += persist.sys.fuse.passthrough.enable=true

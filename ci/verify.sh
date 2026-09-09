@@ -8,11 +8,12 @@ python3 "$src/external/avb/avbtool.py" info_image --image "$img" | tee /content/
 python3 "$src/external/avb/avbtool.py" verify_image --image "$img" | tee /content/fox-logs/avb-verify.txt
 sudo mkdir -p /content/fox-artifacts
 sudo chown "$(id -u):$(id -g)" /content/fox-artifacts
-cp "$img" /content/fox-artifacts/OrangeFox-meizu21-R3-DIAGNOSTIC.img
-cp DEVICE-NOTES.md TESTING.md REPAIR-R2.md DIAGNOSTIC-R3.md /content/fox-artifacts/
+cp "$img" /content/fox-artifacts/OrangeFox-meizu21-R4-PROSCHEME.img
+cp DEVICE-NOTES.md TESTING.md REFERENCE-R4.md /content/fox-artifacts/
 cp /content/fox-logs/pinned-manifest.xml /content/fox-artifacts/
 cp /content/fox-logs/device-tree-commit.txt /content/fox-artifacts/
 cp /content/fox-logs/recovery-local.patch /content/fox-artifacts/
+cp evidence/R4-reference-contract.json evidence/R4-stock-components.json /content/fox-artifacts/
 tar -czf /content/fox-artifacts/device-tree.tar.gz device/meizu/meizu21 ci
-printf '%s\n' 'R3 DIAGNOSTIC Meizu 21/M2461 image. Not a proven fix. Hardware and FBE decryption NOT verified. Not for Meizu 21 Pro. Development AVB verification is not OEM authorization.' > /content/fox-artifacts/UNTESTED.txt
-(cd /content/fox-artifacts && sha256sum OrangeFox-meizu21-R3-DIAGNOSTIC.img > SHA256SUMS)
+printf '%s\n' 'R4 PRO-SCHEME Meizu 21/M2461 image. Not a proven fix. Hardware and FBE decryption NOT verified. Not for Meizu 21 Pro. Development AVB verification is not OEM authorization.' > /content/fox-artifacts/UNTESTED.txt
+(cd /content/fox-artifacts && sha256sum OrangeFox-meizu21-R4-PROSCHEME.img > SHA256SUMS)

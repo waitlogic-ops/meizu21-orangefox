@@ -1,56 +1,77 @@
-# SPDX-License-Identifier: Apache-2.0
-# Stock USB setup adapted from evidence/stock-init.recovery.qcom.rc.
-import /init.recovery.meizu21-services.rc
+# Copyright (c) 2017-2023, The Linux Foundation. All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of The Linux Foundation nor
+#       the names of its contributors may be used to endorse or promote
+#       products derived from this software without specific prior written
+#       permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NON-INFRINGEMENT ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+# CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+# OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+# OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
 
 on init
-    setprop sys.usb.configfs 1
-    setprop sys.usb.controller a600000.dwc3
-    write /sys/class/backlight/panel0-backlight/brightness 1024
-
-on property:ro.boot.usbcontroller=*
-    setprop sys.usb.controller ${ro.boot.usbcontroller}
-    wait /sys/bus/platform/devices/${ro.boot.usb.dwc3_msm:-a600000.ssusb}/mode 2
-    write /sys/bus/platform/devices/${ro.boot.usb.dwc3_msm:-a600000.ssusb}/mode peripheral
-    wait /sys/class/udc/${ro.boot.usbcontroller} 1
-
-on fs
-    wait /dev/block/platform/soc/${ro.boot.bootdevice} 2
-    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
-
-on boot
-    # Module loading remains the job of the unchanged stock vendor ramdisk.
-    chmod 0660 /dev/aac_richtap_dev
-    chown system input /dev/aac_richtap_dev
+    setprop prepdecrypt.setpatch true
     start vendor.boot-qti
 
-# Mount the stock slot firmware read-only before late driver/service startup.
-# /firmware/image is already in this device tree's ueventd firmware search path.
+on early-fs
+    write /proc/sys/walt/sched_lib_name "recovery,magiskboot,Updater,updater,update_engine_sideload"
+    write /proc/sys/walt/sched_lib_mask_force 255
+
 on fs
-    mkdir /firmware 0755 root root
-    wait /dev/block/bootdevice/by-name/modem${ro.boot.slot_suffix} 10
-    mount vfat /dev/block/bootdevice/by-name/modem${ro.boot.slot_suffix} /firmware ro
-    # The QSEE SSD listener opens this partition; wait for ueventd first.
+    wait /dev/block/platform/soc/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+    write /proc/sys/kernel/firmware_config/force_sysfs_fallback 1
+    chmod 0660 /dev/qseecom
+    chown system drmrpc /dev/qseecom
+    chmod 0664 /dev/ion
+    chown system system /dev/ion
+    # Its SSD listener opens by-name/ssd, which ueventd may not have made yet.
     wait /dev/block/bootdevice/by-name/ssd 10
     start vendor.qseecomd
+    mkdir /mnt/vendor 0775 shell system
+    mkdir /mnt/vendor/persist 0775 shell system
+    mkdir /tmp/persist 0775 shell system
+    mount none /tmp/persist /mnt/vendor/persist bind rec
+    install_keyring
 
-# Match the Pro Gatekeeper dependency; it no longer waits for props_ready.
+on boot
+    setprop sys.usb.config adb
+
+# qseecomd is up, so the HALs that reach a trustlet through it can follow.
 on property:vendor.sys.listeners.registered=true
     start vendor.gatekeeper_default
+    start vendor.secure_element
 
-# KeyMint uses an independent gate, as in the Pro service split.
-# Retain actual installed-OS property preparation before its constructor.
-on property:meizu21.crypto.props_ready=1
-    start vendor.keymint-qti
-
-# Module loading publishes this before the recovery UI is started.
 on property:twrp.modules.loaded=true
-    symlink /firmware /vendor/firmware_mnt
-    start vendor.pd_mapper
-    wait /sys/kernel/boot_adsp/boot 5
+    # KeyMint stays down until this has pointed the version properties at the
+    # installed system, so start it as early as the mapper nodes allow.
+    start start_crypto_services
+    # Mount firmware
+    mkdir /firmware
+    mount vfat /dev/block/bootdevice/by-name/modem${ro.boot.slot_suffix} /firmware ro
+    # Load ADSP firmware for PMIC
+    wait /sys/kernel/boot_adsp/boot
     write /sys/kernel/boot_adsp/boot 1
-    chmod 0660 /dev/aac_richtap_dev
-    chown system input /dev/aac_richtap_dev
-    # Stock vibrator init grants its system UID access to this haptics node.
-    chown system system /sys/class/qcom-haptics/primitive_duration
-    chmod 0600 /sys/class/qcom-haptics/primitive_duration
+    wait /sys/kernel/boot_adsp/ssr
+    write /sys/kernel/boot_adsp/ssr 1
+    wait /sys/class/power_supply/battery
+    start vendor.health-default
     start vendor.qti.vibrator
+    umount /vendor
+    symlink /firmware /vendor/firmware_mnt

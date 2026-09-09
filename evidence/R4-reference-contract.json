@@ -1,0 +1,21 @@
+{
+  "reference_commit": "c7cea8004036ca55bc3fce125080aa0ad7c28bac",
+  "exact_files": {
+    "recovery/root/init.recovery.qcom.rc": "af5fbb495441e4c2c0de50d5ca41a2bbf39ef874ad2c74d3d8684af301e187e9",
+    "recovery/root/init.recovery.usb.rc": "6792f5f631d5eb77d63382006caac90d1b9e8abe9dfd7aab657c56838bdb0524",
+    "recovery/root/vendor/bin/start_crypto_services.sh": "06c200b01c1cb060564dfe2fc13a0d16d850bef92f655566ff1ab729132df7a8",
+    "system.prop": "33c7e7a0effa9ee657942178bc415a3ec9e3f1a2edbb14f2e4d6866fde5ff9c3",
+    "recovery.fstab": "19aa9f7c5cac9e80d1c89c4bc063b5fa54d3310a1a02e23dd306c26f795a8cb3",
+    "recovery/root/vendor/etc/init/android.hardware.secure_element-service.qti.rc": "83b24bb6af10ab89b162e72331b9aecc7cc959669a0e279c8ad0f687fd13755c",
+    "recovery/root/vendor/etc/init/android.hardware.gatekeeper-service-qti.rc": "d457caa2fa09d559eb091bb7a027314283b7e86a134301c804e1526d18c1d4ab",
+    "recovery/root/vendor/etc/init/vendor.qti.hardware.vibrator.service.rc": "b30556b3db383278eea9ca26f919aceb6c828bca74d849e387fce4d252d0627a",
+    "recovery/root/vendor/etc/init/qseecomd.rc": "94dfdfa1a07cb9ccf2d324803046da4a7fb667bb218b3d8520822a47f9407fca",
+    "recovery/root/vendor/etc/init/android.hardware.boot-service.qti.rc": "8b5e365058249fc1cd050f56cf85cbdde285e2bc49145d44ce73fe296f6a76f9",
+    "recovery/root/vendor/etc/init/android.hardware.security.keymint-service-qti.rc": "5946f3b6dac1ac470d68dd25c528dd21a4bd1464f40876f68473bfa3e26dc7d3",
+    "recovery/root/vendor/etc/init/start_crypto_services.rc": "05893bd89d2ff78f284750ce6fbf1d252912c8e90c8b89bb5c1fe8816772085e",
+    "recovery/root/vendor/etc/init/android.hardware.health-service.qti.rc": "9931e69381bed5df92a19c0f4ad493ccabb76ec38a815d9e589412bf15e8ce50",
+    "recovery/root/vendor/etc/ueventd.rc": "8046cac9dca49bed1f37035c4bc5038bef3608cbe34aeda7cdee719db1eca24b",
+    "recovery/root/system/etc/ueventd.rc": "9e857b38faaa3df9c7b93dd34ca8db828406f909b260b194257c90c8c2f6d751",
+    "recovery/root/vendor/odm/etc/ueventd.rc": "1451f1ae85a9418e2ac6ba58e3272c8df0506a81f71db5f90f93261a67a0724a"
+  }
+}

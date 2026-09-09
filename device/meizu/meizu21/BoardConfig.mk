@@ -1,93 +1,185 @@
-# SPDX-License-Identifier: Apache-2.0
-# Experimental bring-up for the supplied Flyme 10.5.0.2G firmware only.
 DEVICE_PATH := device/meizu/meizu21
+#
+# Copyright (C) 2024 The Android Open Source Project
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+# Building with minimal manifest
+ALLOW_MISSING_DEPENDENCIES := true
+
+# Rules
+BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
+BUILD_BROKEN_NINJA_USES_ENV_VARS += RTIC_MPGEN
+BUILD_BROKEN_PLUGIN_VALIDATION := soong-libaosprecovery_defaults soong-libguitwrp_defaults soong-libminuitwrp_defaults soong-vold_defaults
+
+# Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := generic
-TARGET_CPU_VARIANT_RUNTIME := cortex-a76
-TARGET_NO_BOOTLOADER := true
-TARGET_BOOTLOADER_BOARD_NAME := pineapple
-TARGET_BOARD_PLATFORM := pineapple
 
-BOARD_BOOT_HEADER_VERSION := 4
-BOARD_KERNEL_PAGESIZE := 4096
-BOARD_KERNEL_IMAGE_NAME := Image
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image
-BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 104857600
-BOARD_MKBOOTIMG_ARGS += --header_version 4 --pagesize 4096
+# Power
+ENABLE_CPUSETS := true
+ENABLE_SCHEDBOOST := true
+
+# Battery
+TW_CUSTOM_BATTERY_PATH := "/sys/class/power_supply/battery"
+TW_BATTERY_SYSFS_WAIT_SECONDS := 6
+
+# Bootloader
+PRODUCT_PLATFORM := pineapple
+TARGET_BOOTLOADER_BOARD_NAME := pineapple
+TARGET_NO_BOOTLOADER := true
+TARGET_USES_UEFI := true
+
+# Platform
+TARGET_BOARD_PLATFORM := meizu_sm8650
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno750
+QCOM_BOARD_PLATFORMS += meizu_sm8650
+
+# Kernel
+TARGET_KERNEL_ARCH            := arm64
+TARGET_KERNEL_HEADER_ARCH     := arm64
+BOARD_KERNEL_IMAGE_NAME       := Image
+BOARD_BOOT_HEADER_VERSION     := 4
+BOARD_KERNEL_PAGESIZE         := 4096
+TARGET_KERNEL_CLANG_COMPILE   := true
+TARGET_PREBUILT_KERNEL        := $(DEVICE_PATH)/prebuilt/Image
+BOARD_MKBOOTIMG_ARGS          += --header_version $(BOARD_BOOT_HEADER_VERSION)
+BOARD_MKBOOTIMG_ARGS          += --pagesize $(BOARD_KERNEL_PAGESIZE)
+
+# Ramdisk use lz4
 BOARD_RAMDISK_USE_LZ4 := true
-# Stock recovery is kernel-free. Do not place DTB or vendor ramdisk here.
-BOARD_AVB_ENABLE := true
-# Public AOSP development key, never represented as an OEM signature.
-# Keep the stock recovery rollback value (1); do not advance it to a date.
-BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
-BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
-BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
-BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
+
+# A/B
+BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
 
 AB_OTA_UPDATER := true
-AB_OTA_PARTITIONS := boot dtbo init_boot odm recovery system_dlkm vbmeta vendor vendor_boot vendor_dlkm
-# Do not guess super size/group geometry from the sum of extracted images.
+AB_OTA_PARTITIONS += \
+    boot \
+    init_boot \
+    vendor_boot \
+    dtbo \
+    vbmeta \
+    vbmeta_system \
+    odm \
+    product \
+    system \
+    system_ext \
+    system_dlkm \
+    vendor \
+    vendor_dlkm
+
+# Verified Boot
+BOARD_AVB_ENABLE := true
+
+# Partitions
+BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
+
+# Workaround for error copying vendor files to recovery ramdisk
 TARGET_COPY_OUT_VENDOR := vendor
-BOARD_USES_METADATA_PARTITION := true
-BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
-TARGET_USERIMAGES_USE_F2FS := true
+
+TARGET_COPY_OUT_ODM := odm
+BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_USES_VENDOR_DLKMIMAGE := true
+TARGET_COPY_OUT_VENDOR_DLKM := vendor_dlkm
+BOARD_VENDOR_DLKMIMAGE_FILE_SYSTEM_TYPE := ext4
+
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 104857600
+
+# Dynamic Partition
+
+# File systems
 TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_USES_MKE2FS := true
+TARGET_USERIMAGES_USE_F2FS := true
+
+#Init
+TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
+
+# Extras
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+
+# Recovery
 BOARD_HAS_LARGE_FILESYSTEM := true
-BOARD_HAS_NO_REAL_SDCARD := true
+TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
-TARGET_RECOVERY_DEVICE_DIRS += $(DEVICE_PATH)
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-TW_THEME := portrait_hdpi
-TW_DEFAULT_LANGUAGE := en
-TW_EXTRA_LANGUAGES := true
-TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
-# All parsed stock panel DTBOs specify 4095; stock init sets brightness to 2047.
-TW_MAX_BRIGHTNESS := 4095
-TW_DEFAULT_BRIGHTNESS := 1024
-TW_FRAMERATE := 60
+
+# Crypto
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
-TW_USE_FSCRYPT_POLICY := 2
 BOARD_USES_QCOM_FBE_DECRYPTION := true
-TW_SUPPORT_INPUT_AIDL_HAPTICS := true
-TW_INCLUDE_FASTBOOTD := true
+BOARD_USES_METADATA_PARTITION := true
+TW_USE_FSCRYPT_POLICY := 2
+PLATFORM_VERSION := 99.87.36
+PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
+PLATFORM_SECURITY_PATCH := 2099-12-31
+VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
+BOOT_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
+
+# Tool
+TW_INCLUDE_REPACKTOOLS := true
 TW_INCLUDE_RESETPROP := true
 TW_INCLUDE_LIBRESETPROP := true
-TW_INCLUDE_LPTOOLS := true
-TW_INCLUDE_LPDUMP := true
-TW_SKIP_ADDITIONAL_FSTAB := true
+TW_ENABLE_ALL_PARTITION_TOOLS := true
+TW_USE_TOOLBOX := true
+TW_INCLUDE_7ZA := true
+TW_INCLUDE_ZSTD := true
+
+# F2FS
 TW_ENABLE_FS_COMPRESSION := true
-RECOVERY_SDCARD_ON_DATA := true
+
+# Debug
 TARGET_USES_LOGD := true
 TWRP_INCLUDE_LOGCAT := true
-TW_DEVICE_VERSION := meizu21-Flyme10.5.0.2G-experimental
-# Prebuilt ELF files are in recovery/root. Their closure is audited separately.
-BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
-BUILD_BROKEN_PLUGIN_VALIDATION := soong-libaosprecovery_defaults soong-libguitwrp_defaults soong-libminuitwrp_defaults soong-vold_defaults
+TARGET_RECOVERY_DEVICE_MODULES += debuggerd
+RECOVERY_BINARY_SOURCE_FILES += $(TARGET_OUT_EXECUTABLES)/debuggerd
+TARGET_RECOVERY_DEVICE_MODULES += strace
+RECOVERY_BINARY_SOURCE_FILES += $(TARGET_OUT_EXECUTABLES)/strace
 
-# Libraries used by stock HALs copied into the recovery ramdisk.
-TARGET_RECOVERY_DEVICE_MODULES += libbase libdebuggerd_client libprocinfo libbinder_ndk libc++ libc libcrypto libcutils libdl libdmabufheap libgatekeeper libhardware libhidlbase libion liblog libm libutils libxml2 libz android.hardware.boot@1.1
-RECOVERY_LIBRARY_SOURCE_FILES += $(foreach lib,$(TARGET_RECOVERY_DEVICE_MODULES),$(TARGET_OUT_SHARED_LIBRARIES)/$(lib).so)
+# Fastbootd
+TW_INCLUDE_FASTBOOTD := true
 
-# Fallback for stock first-stage init: request only modules present in stock evidence.
-TW_LOAD_VENDOR_BOOT_MODULES := true
-TW_LOAD_VENDOR_MODULES := "qrtr.ko qrtr-smd.ko qcom_q6v5_pas.ko goodix_ts.ko haptic_aac.ko qcom-hv-haptics.ko qti_battery_charger.ko"
+# SCREEN_TOUCH_MAPPING
+TW_USE_MEIZU_TOUCH_MAPPING := true
 
-# Read kernel battery nodes directly; a full vendor health daemon is not required.
-TW_USE_LEGACY_BATTERY_SERVICES := true
-TW_CUSTOM_BATTERY_PATH := "/sys/class/power_supply/battery"
-# Use Qualcomm RTC/ATS correction when available; do not invent a fixed offset.
+# Other TWRP Configurations
+TW_THEME := portrait_hdpi
+TW_FRAMERATE := 120
+RECOVERY_SDCARD_ON_DATA := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
-
-# Device USB init extends the generic configfs handlers with FunctionFS MTP.
 TW_EXCLUDE_DEFAULT_USB_INIT := true
-
-# R3 diagnostic: match the working m2461 and m2481 APEX setting.
+TW_INCLUDE_NTFS_3G := true
+TW_NO_EXFAT_FUSE := true
+TW_USE_DMCTL := true
+TW_USE_TOOLBOX := true
+TARGET_USES_MKE2FS := true
+TW_INCLUDE_FUSE_EXFAT := true
+TW_INCLUDE_FUSE_NTFS := true
+TW_INPUT_BLACKLIST := "hbtp_vm"
+TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
+TW_MAX_BRIGHTNESS := 4095
+TW_EXTRA_LANGUAGES := true
+TW_DEFAULT_LANGUAGE := zh_CN
+TW_DEFAULT_BRIGHTNESS := 2048
 TW_EXCLUDE_APEX := true
-TARGET_RECOVERY_DEVICE_MODULES += debuggerd strace
-RECOVERY_BINARY_SOURCE_FILES += $(TARGET_OUT_EXECUTABLES)/debuggerd $(TARGET_OUT_EXECUTABLES)/strace
+TW_HAS_EDL_MODE := true
+TW_SUPPORT_INPUT_AIDL_HAPTICS := true
+TW_USE_SERIALNO_PROPERTY_FOR_DEVICE_ID := true
+TW_SCREEN_BLANK_ON_BOOT := true
+TW_LOAD_VENDOR_MODULES := "qrtr.ko qrtr-smd.ko qcom_q6v5_pas.ko goodix_ts.ko haptic_aac.ko qcom-hv-haptics.ko qti_battery_charger.ko"
+TW_LOAD_VENDOR_MODULES_EXCLUDE_GKI := true
+TW_BACKUP_EXCLUSIONS := /data/fonts
+TW_DEVICE_VERSION := Meizu_21-R4-ProScheme
+TW_NO_NETWORK := true
+
+# Standard M2461 ramdisk packaging and stock module source.
+TARGET_RECOVERY_DEVICE_DIRS += $(DEVICE_PATH)
+TW_LOAD_VENDOR_BOOT_MODULES := true
+# Explicit closure for stock HALs and reference diagnostic tools.
+MEIZU21_RECOVERY_LIBS := libbase libdebuggerd_client libprocinfo libbinder_ndk libc++ libc libcrypto libcutils libdl libdmabufheap libgatekeeper libhardware libhidlbase libion liblog libm libutils libxml2 libz android.hardware.boot@1.1
+TARGET_RECOVERY_DEVICE_MODULES += $(MEIZU21_RECOVERY_LIBS)
+RECOVERY_LIBRARY_SOURCE_FILES += $(foreach lib,$(MEIZU21_RECOVERY_LIBS),$(TARGET_OUT_SHARED_LIBRARIES)/$(lib).so)

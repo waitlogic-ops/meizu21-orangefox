@@ -1,0 +1,62 @@
+[
+  {
+    "source": "vendor-root/bin/hw/android.hardware.boot-service.qti",
+    "target": "vendor/bin/hw/android.hardware.boot-service.qti",
+    "sha256": "6f0c4657dd6116f3c94ff7ab8cfda3da0fadf51521c2ea11eca5be1359be1779"
+  },
+  {
+    "source": "vendor-root/bin/hw/android.hardware.secure_element-service.qti",
+    "target": "vendor/bin/hw/android.hardware.secure_element-service.qti",
+    "sha256": "950c430c7710658b1535c11ea52f98e9575ac093123bf09ecea823b7c6876288"
+  },
+  {
+    "source": "recovery/root/system/bin/hw/android.hardware.health-service.qti_recovery",
+    "target": "vendor/bin/hw/android.hardware.health-service.qti_recovery",
+    "sha256": "e88dbb74b720bdcb18da4649b3447ed96fb13e8ccf0c9587ffe143de0a9162f1"
+  },
+  {
+    "source": "vendor-root/etc/vintf/manifest/secure_element-service.xml",
+    "target": "vendor/etc/vintf/manifest/secure_element-service.xml",
+    "sha256": "7b581c593f6b808c59bcdee67343debeaa471a14d9600e4a14a12ebb6d233a34"
+  },
+  {
+    "source": "vendor-root/etc/vintf/manifest/android.hardware.secure_element.xml",
+    "target": "vendor/etc/vintf/manifest/android.hardware.secure_element.xml",
+    "sha256": "047cd9990c7ef55b0808a62226ab81a88eedb57da7609b24d9c3425bf8d8fc2d"
+  },
+  {
+    "source": "recovery/root/system/etc/vintf/manifest/android.hardware.health-service.qti.xml",
+    "target": "vendor/etc/vintf/manifest/android.hardware.health-service.qti.xml",
+    "sha256": "b582d43ce9b0d4a554a033de2cfbf270210d2a9a7e1c6d09b66c03d95c3ed67d"
+  },
+  {
+    "source": "vendor-root/lib64/android.hardware.health-V2-ndk.so",
+    "target": "vendor/lib64/android.hardware.health-V2-ndk.so",
+    "sha256": "a1a44e3c1245cfba40373b31ec64ad8bea1461988b577692fa5ac78f97841dbc"
+  },
+  {
+    "source": "vendor-root/lib64/hw/libEseUtils.so",
+    "target": "vendor/lib64/libEseUtils.so",
+    "sha256": "d880670f15d17ee25b582ee8843d54fdfd7ea15f7c189ee131f5727daac34bcc"
+  },
+  {
+    "source": "vendor-root/lib64/libGPQeSE.so",
+    "target": "vendor/lib64/libGPQeSE.so",
+    "sha256": "c0ddb025904f05d38f93678d7b340a5fb626872cd79a7e58b881913587403ad6"
+  },
+  {
+    "source": "vendor-root/lib64/android.hardware.secure_element-V1-ndk.so",
+    "target": "vendor/lib64/android.hardware.secure_element-V1-ndk.so",
+    "sha256": "b45d7789a31d491c339b12462c9558af6bd2c0d97cfa94d630e588cca1948087"
+  },
+  {
+    "source": "vendor-root/lib64/android.hardware.secure_element@1.0.so",
+    "target": "vendor/lib64/android.hardware.secure_element@1.0.so",
+    "sha256": "27335f39e15394a74adb00339eccd034590e2ddacb5444ea960bfa4f7b235043"
+  },
+  {
+    "source": "vendor-root/lib64/libGPTEE_vendor.so",
+    "target": "vendor/lib64/libGPTEE_vendor.so",
+    "sha256": "3d0f6191951dbb07fec9e2c14ea3d159837026e11996cf35aa9b641664014471"
+  }
+]

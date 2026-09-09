@@ -47,7 +47,7 @@ def verify(path):
                               capture_output=True, check=True).stdout
     entries = cpio_entries(unpacked)
     required = ['system/bin/recovery', 'system/bin/strace', 'system/bin/debuggerd', 'system/etc/recovery.fstab',
-                'init.recovery.qcom.rc', 'init.recovery.meizu21-services.rc',
+                'init.recovery.qcom.rc', 'vendor/bin/start_crypto_services.sh',
                 'vendor/bin/qseecomd', 'vendor/bin/pd-mapper',
                 'vendor/bin/hw/android.hardware.gatekeeper-service-qti',
                 'odm/etc/aac_richtap.config',
@@ -56,28 +56,28 @@ def verify(path):
                 'vendor/etc/vintf/manifest/vendor.qti.hardware.vibrator.service.xml',
                 'vendor/bin/hw/android.hardware.security.keymint-service-qti',
                 'vendor/bin/hw/vendor.qti.hardware.vibrator.service',
-                'system/bin/hw/android.hardware.boot-service.qti.recovery']
+                'vendor/bin/hw/android.hardware.boot-service.qti',
+                'vendor/bin/hw/android.hardware.health-service.qti_recovery',
+                'vendor/bin/hw/android.hardware.secure_element-service.qti']
     for name in required:
         assert name in entries, 'Missing ' + name
-    usb = entries.get('init.recovery.usb.rc', (0, b''))[1].decode()
-    for token in ('functions/ffs.mtp', 'mount functionfs mtp',
-                  'property:sys.usb.config=mtp,adb', 'property:sys.usb.ffs.mtp.ready=1',
-                  'configs/b.1/f2'):
-        assert token in usb, 'Missing MTP configfs support: ' + token
-    assert '/sys/class/android_usb/' not in usb, 'Unexpected legacy USB override'
-    assert b'skipping automatic decryption' in entries['system/bin/recovery'][1], 'Missing compiled startup timeout guard'
+    contract = json.loads((Path(__file__).resolve().parents[1]/'evidence/R4-reference-contract.json').read_text())
+    for source, digest in contract['exact_files'].items():
+        if source.startswith('recovery/root/'):
+            name = source.removeprefix('recovery/root/')
+        elif source == 'recovery.fstab':
+            name = 'system/etc/recovery.fstab'
+        else:
+            continue  # system.prop merges into prop.default; checked below.
+        assert name in entries, 'Missing reference file: ' + name
+        assert hashlib.sha256(entries[name][1]).hexdigest() == digest, 'Reference drift: ' + name
     recovery = entries['system/bin/recovery'][1]
-    for marker in (b'Apex is disabled in this build', b'touch-begin', b'properties-begin', b'decrypt-begin', b'resources-begin'):
-        assert marker in recovery, 'Missing R3 compiled feature: ' + repr(marker)
-    assert b'Unable to load apex images' not in recovery, 'R3 still enables APEX loading'
-    services = entries['init.recovery.meizu21-services.rc'][1].decode()
-    for service in ('vendor.keymint-qti', 'vendor.gatekeeper_default'):
-        block = re.search(r'^service ' + re.escape(service) + r' .*?(?=^service |\Z)', services, re.M | re.S).group()
-        assert '\n    user root\n' in block and '\n    class early_hal\n' in block
+    assert b'Apex is disabled in this build' in recovery
+    for forbidden in (b'MEIZU21_STAGE', b'meizu21.crypto.props_ready', b'skipping automatic decryption', b'Unable to load apex images'):
+        assert forbidden not in recovery, 'Unexpected custom startup logic: ' + repr(forbidden)
     props = entries['prop.default'][1].decode()
-    assert 'vendor.gatekeeper.disable_spu=true' in props
-    ueventd = entries['vendor/etc/ueventd.rc'][1].decode()
-    assert re.search(r'/dev/dma_heap/qcom,\*\s+0444\s+system\s+system', ueventd), 'Missing stock QSEE DMA heap permissions'
+    for token in ('vendor.gatekeeper.disable_spu=true', 'ro.build.version.release=99.87.36', 'ro.build.version.security_patch=2099-12-31'):
+        assert token in props, 'Missing reference property: ' + token
     # qseecomd loads these listeners with dlopen; DT_NEEDED alone misses them.
     for lib in ('libgpt.so', 'librpmb.so', 'libssd.so', 'libops.so',
                 'libGPreqcancel.so', 'libqisl.so', 'libdrmtime.so', 'libspl.so'):

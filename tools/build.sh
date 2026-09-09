@@ -5,7 +5,6 @@ cd /content/fox-work/fox_14.1
 test -f .repo/manifest.xml
 test -f device/meizu/meizu21/BoardConfig.mk
 export FOX_BUILD_DEVICE=meizu21
-export MEIZU_TOUCH_MAPPING="${MEIZU_TOUCH_MAPPING:-0}"
 source device/meizu/meizu21/vendorsetup.sh
 source build/envsetup.sh
 source device/meizu/meizu21/vendorsetup.sh

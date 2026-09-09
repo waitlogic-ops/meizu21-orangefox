@@ -33,18 +33,14 @@ for attempt in range(1, 9):
         shutil.rmtree(device)
     device.parent.mkdir(parents=True, exist_ok=True)
     shutil.copytree(config / 'device/meizu/meizu21', device)
-    # Restore only the four files patched by our reviewed hooks.
+    # Restore upstream files that older R2/R3 iterations patched. R4 adds no hooks.
     recovery = source / 'bootable/recovery'
     for name in ('partitionmanager.cpp', 'twrp.cpp', 'gui/gui.cpp', 'gui/gui.h'):
         original = subprocess.check_output(['git', 'show', 'HEAD:' + name], cwd=recovery)
         (recovery / name).write_bytes(original)
-    result = run('python3', str(config / 'ci/patch-source.py'), str(source), check=False)
-    if result.returncode == 0:
-        result = run('python3', str(config / 'ci/patch-startup.py'), str(source), check=False)
-    if result.returncode == 0:
-        diff = read('git', 'diff', cwd=recovery)
-        (logs / 'recovery-local.patch').write_text(diff + '\n')
-        result = run('bash', str(config / 'tools/build.sh'), cwd=source, check=False)
+    diff = read('git', 'diff', cwd=recovery)
+    (logs / 'recovery-local.patch').write_text(diff + '\n')
+    result = run('bash', str(config / 'tools/build.sh'), cwd=source, check=False)
     if result.returncode == 0:
         image = source / 'out/target/product/meizu21/recovery.img'
         result = run('python3', str(config / 'tools/verify-image.py'), str(image), cwd=source, check=False)

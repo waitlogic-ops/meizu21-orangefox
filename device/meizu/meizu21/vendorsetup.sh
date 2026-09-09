@@ -6,7 +6,6 @@ if [[ "${FOX_BUILD_DEVICE:-}" == "meizu21" ]]; then
     export OF_USE_AIDL_BOOT_CONTROL=1
     export OF_NO_REFLASH_CURRENT_ORANGEFOX=1
     export FOX_MAINTAINER="local-meizu21-bringup"
-    export FOX_VARIANT="experimental-Flyme10.5.0.2G"
-    # Enable only after getevent confirms the known Meizu coordinate issue.
-    export FOX_USE_MEIZU_TOUCH_MAPPING="${MEIZU_TOUCH_MAPPING:-0}"
+    export FOX_VARIANT="R4-ProScheme"
+    export FOX_USE_MEIZU_TOUCH_MAPPING=1
 fi

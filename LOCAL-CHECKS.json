@@ -1,5 +1,5 @@
 {
-  "status": "local syntax and low-disk guard passed",
+  "status": "Cloud build, cloud image checks, and local downloaded image verification passed; hardware untested",
   "checked": [
     "tools/setup-colab.sh",
     "tools/collect-device.sh",
@@ -13,10 +13,15 @@
     "ci/watch.py"
   ],
   "github_run_started": true,
-  "recovery_built": false,
+  "recovery_built": true,
   "workflow_check": "actionlint v1.7.7 passed",
   "watchdog_checks": [
     "rejects insufficient disk before child starts",
     "preserves child exit code 7"
-  ]
+  ],
+  "successful_run": 34365479959,
+  "device_tree_commit": "98f066bfd9e5cd99d4d403d8955bf1bf2a2db5b2",
+  "image_bytes": 104857600,
+  "checked_ELFs": 304,
+  "hardware_verified": false
 }

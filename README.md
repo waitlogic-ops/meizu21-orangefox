@@ -2,7 +2,9 @@
 
 针对魅族 21 标准版 M2461/meizu21，原厂 Android 14 / Flyme 10.5.0.2G。不是魅族 21 Pro 镜像。
 
-状态：GitHub 构建已启动，尚未生成镜像。第一轮环境准备发现构建账号工作目录权限问题，已修复并重试。设备树尚未通过实际编译与真机测试。Colab 的部分源码不会迁移到 GitHub，新任务需要重新同步。
+状态：2026-09-09 的 [构建 34365479959](https://github.com/waitlogic-ops/meizu21-orangefox/actions/runs/34365479959) 已成功生成 OrangeFox R12.0 实验镜像，云端与本地静态检查通过。实际设备树为 `98f066bfd9e5cd99d4d403d8955bf1bf2a2db5b2`。镜像 104857600 字节，检查 304 个 ELF 未发现缺少直接依赖库；尚未刷机或完成任何真机功能验证。
+
+SHA256：`f8d7fecafe33adabeb1eb0e27d91ccc3652357dd76aa1dbc7ef5adc5d55b89ed`。首次刷入与回滚参见 [TESTING.md](TESTING.md)。
 
 ## 使用
 

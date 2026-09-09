@@ -20,5 +20,7 @@ for f in (d/'recovery/root/vendor/etc/init').glob('*.rc'):
   parts=line.split()
   if parts and parts[0]=='service':
    assert len(parts)>=3
-   assert (d/'recovery/root'/parts[2].lstrip('/')).is_file(),parts[2]
+   executable=d/'recovery/root'/parts[2].lstrip('/')
+   assert executable.is_file(),parts[2]
+   assert executable.stat().st_mode & 0o111, 'Non-executable service: '+parts[2]
 print('R4 reference: exact hashes, service executables, library inclusion and no custom startup hooks passed.')

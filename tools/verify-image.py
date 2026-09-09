@@ -71,6 +71,8 @@ def verify(path):
             continue  # system.prop merges into prop.default; checked below.
         assert name in entries, 'Missing reference file: ' + name
         assert hashlib.sha256(entries[name][1]).hexdigest() == digest, 'Reference drift: ' + name
+    for name in ('vendor/bin/start_crypto_services.sh', 'vendor/bin/hw/android.hardware.health-service.qti_recovery'):
+        assert entries[name][0] & 0o111, 'Non-executable service: ' + name
     recovery = entries['system/bin/recovery'][1]
     assert b'Apex is disabled in this build' in recovery
     for forbidden in (b'MEIZU21_STAGE', b'meizu21.crypto.props_ready', b'skipping automatic decryption', b'Unable to load apex images'):

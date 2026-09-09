@@ -17,6 +17,6 @@ install -d -o foxbuild -g foxbuild /content/fox-work /content/fox-logs
 curl --fail --location --retry 3 https://storage.googleapis.com/git-repo-downloads/repo -o /usr/local/bin/repo
 chmod 0755 /usr/local/bin/repo
 cd /content
-runuser -u foxbuild -- git config --global user.name 'Local recovery build'
-runuser -u foxbuild -- git config --global user.email 'recovery-build@localhost'
-runuser -u foxbuild -- git config --global color.ui false
+runuser -u foxbuild -- env -u XDG_CONFIG_HOME -u XDG_CACHE_HOME git config --global user.name 'Local recovery build'
+runuser -u foxbuild -- env -u XDG_CONFIG_HOME -u XDG_CACHE_HOME git config --global user.email 'recovery-build@localhost'
+runuser -u foxbuild -- env -u XDG_CONFIG_HOME -u XDG_CACHE_HOME git config --global color.ui false

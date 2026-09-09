@@ -46,7 +46,7 @@ def verify(path):
     unpacked = subprocess.run(['lz4', '-d', '-c'], input=ramdisk,
                               capture_output=True, check=True).stdout
     entries = cpio_entries(unpacked)
-    required = ['system/bin/recovery', 'system/etc/recovery.fstab',
+    required = ['system/bin/recovery', 'system/bin/strace', 'system/bin/debuggerd', 'system/etc/recovery.fstab',
                 'init.recovery.qcom.rc', 'init.recovery.meizu21-services.rc',
                 'vendor/bin/qseecomd', 'vendor/bin/pd-mapper',
                 'vendor/bin/hw/android.hardware.gatekeeper-service-qti',
@@ -66,6 +66,16 @@ def verify(path):
         assert token in usb, 'Missing MTP configfs support: ' + token
     assert '/sys/class/android_usb/' not in usb, 'Unexpected legacy USB override'
     assert b'skipping automatic decryption' in entries['system/bin/recovery'][1], 'Missing compiled startup timeout guard'
+    recovery = entries['system/bin/recovery'][1]
+    for marker in (b'Apex is disabled in this build', b'touch-begin', b'properties-begin', b'decrypt-begin', b'resources-begin'):
+        assert marker in recovery, 'Missing R3 compiled feature: ' + repr(marker)
+    assert b'Unable to load apex images' not in recovery, 'R3 still enables APEX loading'
+    services = entries['init.recovery.meizu21-services.rc'][1].decode()
+    for service in ('vendor.keymint-qti', 'vendor.gatekeeper_default'):
+        block = re.search(r'^service ' + re.escape(service) + r' .*?(?=^service |\Z)', services, re.M | re.S).group()
+        assert '\n    user root\n' in block and '\n    class early_hal\n' in block
+    props = entries['prop.default'][1].decode()
+    assert 'vendor.gatekeeper.disable_spu=true' in props
     ueventd = entries['vendor/etc/ueventd.rc'][1].decode()
     assert re.search(r'/dev/dma_heap/qcom,\*\s+0444\s+system\s+system', ueventd), 'Missing stock QSEE DMA heap permissions'
     # qseecomd loads these listeners with dlopen; DT_NEEDED alone misses them.

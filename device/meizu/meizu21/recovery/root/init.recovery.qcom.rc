@@ -33,10 +33,14 @@ on fs
     wait /dev/block/bootdevice/by-name/ssd 10
     start vendor.qseecomd
 
-# The source hook signals only after reading the installed OS properties.
-on property:vendor.sys.listeners.registered=true && property:meizu21.crypto.props_ready=1
-    start vendor.keymint-qti
+# Match the Pro Gatekeeper dependency; it no longer waits for props_ready.
+on property:vendor.sys.listeners.registered=true
     start vendor.gatekeeper_default
+
+# KeyMint uses an independent gate, as in the Pro service split.
+# Retain actual installed-OS property preparation before its constructor.
+on property:meizu21.crypto.props_ready=1
+    start vendor.keymint-qti
 
 # Module loading publishes this before the recovery UI is started.
 on property:twrp.modules.loaded=true

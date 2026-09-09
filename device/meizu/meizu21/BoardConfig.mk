@@ -86,3 +86,8 @@ TARGET_RECOVERY_QCOM_RTC_FIX := true
 
 # Device USB init extends the generic configfs handlers with FunctionFS MTP.
 TW_EXCLUDE_DEFAULT_USB_INIT := true
+
+# R3 diagnostic: match the working m2461 and m2481 APEX setting.
+TW_EXCLUDE_APEX := true
+TARGET_RECOVERY_DEVICE_MODULES += debuggerd strace
+RECOVERY_BINARY_SOURCE_FILES += $(TARGET_OUT_EXECUTABLES)/debuggerd $(TARGET_OUT_EXECUTABLES)/strace

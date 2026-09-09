@@ -33,4 +33,6 @@ if sudo modprobe zram && [[ -b /dev/zram0 ]] && ! swapon --show=NAME --noheading
 fi
 free -h
 df -h /content
-git rev-parse HEAD > /content/fox-logs/device-tree-commit.txt
+git rev-parse HEAD > /content/fox-logs/workflow-commit.txt
+# The build identity creates its own device-tree-commit.txt after syncing main.
+sudo -u foxbuild test -w /content/fox-logs

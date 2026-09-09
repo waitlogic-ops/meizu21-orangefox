@@ -66,6 +66,8 @@ def verify(path):
         assert token in usb, 'Missing MTP configfs support: ' + token
     assert '/sys/class/android_usb/' not in usb, 'Unexpected legacy USB override'
     assert b'skipping automatic decryption' in entries['system/bin/recovery'][1], 'Missing compiled startup timeout guard'
+    ueventd = entries['vendor/etc/ueventd.rc'][1].decode()
+    assert re.search(r'/dev/dma_heap/qcom,\*\s+0444\s+system\s+system', ueventd), 'Missing stock QSEE DMA heap permissions'
     # qseecomd loads these listeners with dlopen; DT_NEEDED alone misses them.
     for lib in ('libgpt.so', 'librpmb.so', 'libssd.so', 'libops.so',
                 'libGPreqcancel.so', 'libqisl.so', 'libdrmtime.so', 'libspl.so'):

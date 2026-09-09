@@ -3,3 +3,9 @@ firmware_directories /etc/firmware/ /odm/firmware/ /vendor/firmware/ /firmware/i
 /dev/qseecom 0660 system drmrpc
 /dev/smcinvoke 0660 system drmrpc
 /dev/qsee_ipc_irq_spss 0660 system drmrpc
+
+# Match the supplied stock ueventd permissions for system-UID crypto HALs.
+# libQSEEComAPI allocates from qcom,qseecom and qcom,qseecom-ta heaps.
+/dev/dma_heap/qcom,* 0444 system system
+/dev/qce 0660 system drmrpc
+/dev/ion 0664 system system

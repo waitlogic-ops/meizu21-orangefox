@@ -20,3 +20,7 @@ The old m2461 image does contain its AAC config through /odm/etc -> /vendor/odm/
 `python3 tests/test_predecrypt.py` compiles and executes the patched startup block with simulated init properties. It checks timeout skips decryption, immediate readiness and delayed readiness. The old hook failed the timeout assertion before the fix.
 
 Image verification requires the compiled timeout log marker and configfs MTP configuration, in addition to partition format, FBE flags, required files and ELF dependency checks. These checks cannot validate actual touch, haptics, display, decryption, USB enumeration or successful boot.
+
+## Working m2461 reference follow-up
+
+The user confirmed the old image enters its UI and can access internal files. Its QSEE, KeyMint, Gatekeeper and selected QSEE dependency binaries match the supplied stock components byte-for-byte. Unlike the prior OrangeFox image, stock and recovery14 ueventd grant system access to Qualcomm DMA heaps. The KeyMint service in our tree runs as system, as in stock. Restore stock qcom heap, qce and ion node permissions; the QSEE library explicitly references qcom,qseecom and qcom,qseecom-ta. This closes a static permissions gap, but remains unproven as the splash failure's cause.

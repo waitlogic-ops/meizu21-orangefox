@@ -12,6 +12,11 @@
     "tools/preflight.py",
     "ci/watch.py"
   ],
-  "github_run_started": false,
-  "recovery_built": false
+  "github_run_started": true,
+  "recovery_built": false,
+  "workflow_check": "actionlint v1.7.7 passed",
+  "watchdog_checks": [
+    "rejects insufficient disk before child starts",
+    "preserves child exit code 7"
+  ]
 }

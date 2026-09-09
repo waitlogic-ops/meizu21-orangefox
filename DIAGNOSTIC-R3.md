@@ -49,4 +49,4 @@ https://github.com/adontoo/device_meizu_m2481-TWRP/tree/c7cea8004036ca55bc3fce12
 
 显示阶段号本身会轻微改变启动时序；没有真实启动日志或用户观察，不能确定因果。因为本轮同时改了 APEX 和服务方案，即便启动改善，也不能只归功于其中一项。
 
-本轮不执行任何手机命令。刷入与回滚原则参照 TESTING.md，但该文件的旧 R2 文件名应替换为本版 `OrangeFox-meizu21-R3-DIAGNOSTIC.img`。保留原厂 recovery 及用户可启动旧版；不格式化 data/metadata、不修改 vbmeta，不执行 fastboot boot（镜像无内核）。
+本轮不执行任何手机命令。刷入与回滚原则参照 TESTING.md，镜像文件名为 `OrangeFox-meizu21-R3-DIAGNOSTIC.img`。保留原厂 recovery 及用户可启动旧版；不格式化 data/metadata、不修改 vbmeta，不执行 fastboot boot（镜像无内核）。

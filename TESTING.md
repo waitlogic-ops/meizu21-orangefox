@@ -4,7 +4,7 @@
 
 ## 刷入前
 
-- 确认镜像 SHA256 与 SHA256SUMS 一致，使用最终通过校验的构建，不能用早期诊断运行的镜像。
+- 确认镜像 SHA256 与 SHA256SUMS 一致，使用最终通过校验的构建，不要混用 R1、R2 或其他运行的镜像。本版 R3 是诊断候选，静态校验通过仍不代表启动已修复。
 - 核实手机仍为对应的 Android 14 / Flyme 10.5.0.2G 基线。其他 ROM 必须重新评估 HAL、内核和解密兼容性。
 - 手机必须已解锁 bootloader。若未解锁，停在此处；解锁可能清除用户数据，本流程不执行解锁。
 - 备份重要数据，并保存同基线的原厂 recovery.img。首次测试只修改确认过的当前 recovery 槽位。
@@ -27,13 +27,17 @@ fastboot getvar unlocked
 仅当明确确认当前槽位为 a、设备和镜像匹配时：
 
 ```sh
-fastboot flash recovery_a OrangeFox-meizu21-UNTESTED.img
+fastboot flash recovery_a OrangeFox-meizu21-R3-DIAGNOSTIC.img
 fastboot reboot recovery
 ```
 
 若当前槽位是 b，则只把刷入目标替换为 recovery_b。首次不要同时覆盖两个槽位。若 bootloader 不支持 reboot recovery，使用它支持的进入 Recovery 方法，不继续尝试随机分区命令。
 
 该镜像不含内核，不使用 `fastboot boot` 加载。AVB 自校验成功不等于拥有原厂签名；如果启动验证拒绝镜像，先回滚并收集错误，不直接刷改 vbmeta。
+
+## R3 启动阶段提示
+
+若由机主自行测试后仍停在标志画面，记录左上角橙色两位编号，含义见 DIAGNOSTIC-R3.md；没有编号也请如实记录。编号只表示最后显示的阶段，不能单独证明卡屏原因。此任务不由助手执行手机测试或刷入命令。
 
 ## 测试顺序
 

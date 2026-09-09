@@ -16,6 +16,7 @@ id foxbuild >/dev/null 2>&1 || useradd -m -s /bin/bash foxbuild
 install -d -o foxbuild -g foxbuild /content/fox-work /content/fox-logs
 curl --fail --location --retry 3 https://storage.googleapis.com/git-repo-downloads/repo -o /usr/local/bin/repo
 chmod 0755 /usr/local/bin/repo
+cd /content
 runuser -u foxbuild -- git config --global user.name 'Local recovery build'
 runuser -u foxbuild -- git config --global user.email 'recovery-build@localhost'
 runuser -u foxbuild -- git config --global color.ui false

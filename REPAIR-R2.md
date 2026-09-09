@@ -24,3 +24,5 @@ Image verification requires the compiled timeout log marker and configfs MTP con
 ## Working m2461 reference follow-up
 
 The user confirmed the old image enters its UI and can access internal files. Its QSEE, KeyMint, Gatekeeper and selected QSEE dependency binaries match the supplied stock components byte-for-byte. Unlike the prior OrangeFox image, stock and recovery14 ueventd grant system access to Qualcomm DMA heaps. The KeyMint service in our tree runs as system, as in stock. Restore stock qcom heap, qce and ion node permissions; the QSEE library explicitly references qcom,qseecom and qcom,qseecom-ta. This closes a static permissions gap, but remains unproven as the splash failure's cause.
+
+The vibrator startup also restores stock system ownership and mode 0600 on /sys/class/qcom-haptics/primitive_duration after module loading. The AAC device node already grants system access. This is a stock-alignment correction, not proof of working haptics.

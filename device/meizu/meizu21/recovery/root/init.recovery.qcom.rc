@@ -46,4 +46,7 @@ on property:twrp.modules.loaded=true
     write /sys/kernel/boot_adsp/boot 1
     chmod 0660 /dev/aac_richtap_dev
     chown system input /dev/aac_richtap_dev
+    # Stock vibrator init grants its system UID access to this haptics node.
+    chown system system /sys/class/qcom-haptics/primitive_duration
+    chmod 0600 /sys/class/qcom-haptics/primitive_duration
     start vendor.qti.vibrator

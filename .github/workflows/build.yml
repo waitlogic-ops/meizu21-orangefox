@@ -4,7 +4,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: orangefox-meizu21-${{ github.ref }}
+  group: orangefox-meizu21-repair-${{ github.ref }}
   cancel-in-progress: false
 jobs:
   recovery:

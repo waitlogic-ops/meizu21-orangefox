@@ -30,6 +30,9 @@ try:
         free = shutil.disk_usage(root).free
         if tick % 4 == 0:
             print(f'[resources] free disk: {free / 1024**3:.2f} GiB', flush=True)
+            if os.path.exists('/proc/meminfo'):
+                from pathlib import Path
+                print(next(line for line in Path('/proc/meminfo').read_text().splitlines() if line.startswith('MemAvailable:')), flush=True)
         if free < minimum:
             print('Stopping: disk headroom fell below limit.', flush=True)
             stop()
